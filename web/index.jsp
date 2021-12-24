@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello Shogun!</h1>
+        <h1>Hello Shogun2!</h1>
     </body>
 </html>
