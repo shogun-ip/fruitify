@@ -57,7 +57,7 @@
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Supplier</a>
+                    <a class="nav-link" href="supplierServlet">Supplier</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#">Promotion</a>
