@@ -7,18 +7,14 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Account;
-import org.jboss.logging.Logger;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -36,33 +32,40 @@ public class LoginServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException{
+            throws ServletException, IOException, SQLException, ClassNotFoundException{
         response.setContentType("text/html;charset=UTF-8");
 
-        Account account = new Account();
-        String name, email, password, displayName;
-        int phoneNo;
+//        Account account = new Account();
+        String name, address, city, region, email, password;
+        int phoneNo, postcode;
+        name = request.getParameter("FullName");
+        phoneNo = Integer.parseInt(request.getParameter("phoneNum"));
+        address = request.getParameter("Address");
+        postcode = Integer.parseInt(request.getParameter("Postcode"));
+        city = request.getParameter("City");
+        region = request.getParameter("Region");
+        email = request.getParameter("email");
+        password = request.getParameter("Password");
 
         String driver = "com.mysql.jdbc.Driver";
         String dbName = "fruitify";
         String url = "jdbc:mysql://localhost/" + dbName + "?";
         String userName = "root";
         String pword = "";
-        String query = "INSERT INTO useraccounts(name, displayName, phoneNo, email, password) VALUES(?,?,?,?,?)";
+        String query = "INSERT INTO useraccounts(fullname, phoneNo, address, postcode, city, region, email, password) VALUES(?,?,?,?,?,?,?,?)";
 
-        try{
-            Class.forName(driver);
-        }catch (ClassNotFoundException ex){
-            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        Connection con = DriverManager.getConnection(url,userName,pword);
+        Class.forName(driver);
+        Connection con = DriverManager.getConnection(url, userName, pword);
         PreparedStatement st = con.prepareStatement(query);
 
-        st.setString(1, account.getName());
-        st.setString(2, account.getDisplayName());
-        st.setString(3, account.getEmail());
-        st.setString(4, account.getPassword());
-        st.setInt(5, account.getPhoneNo());
+        st.setString(1, name);
+        st.setInt(2, phoneNo);
+        st.setString(3, address);
+        st.setInt(4, postcode);
+        st.setString(5, city);
+        st.setString(6, region);
+        st.setString(7, email);
+        st.setString(8, password);
 
         int insertStatus = 0;
 
@@ -102,6 +105,8 @@ public class LoginServlet extends HttpServlet {
             processRequest(request, response);
         }catch(SQLException ex){
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -120,6 +125,8 @@ public class LoginServlet extends HttpServlet {
             processRequest(request, response);
         }catch(SQLException ex){
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -132,13 +139,5 @@ public class LoginServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
-    private static class Level {
-
-        private static Logger.Level SEVERE;
-
-        public Level() {
-        }
-    }
 
 }

@@ -34,6 +34,10 @@
                 text-decoration: none;
                 color: white;
             }
+            
+            a.disabled{
+                pointer-events: none;
+            }
         </style>
     </head>
     <body>
@@ -75,7 +79,7 @@
                      class="card-img greyed" alt="fruitify-card-bg">
                 <div class="card-img-overlay text-center">
                     <br><br>
-                    <a class="card-text fs-1 text-white-50" href="#">Supplier name here</a>
+                    <a class="card-text fs-1 text-white-50 disabled" href="#">Supplier name here</a>
                 </div>
             </div>
         </div>

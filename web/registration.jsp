@@ -27,7 +27,7 @@
 
               display: flex;
               width: 100%;
-              max-width: 530px;
+              max-width: 700px;
               padding: 80px 160px;
               margin: auto;
             }
@@ -85,24 +85,45 @@
                 <h1 class="h3 mb-3 fw-normal">Logo Here</h1>
 
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="floatingFullName" placeholder="Full Name" required>
-                  <label for="floatingInput">Full Name</label>
+                  <input type="text" class="form-control" id="FullName" name="FullName" placeholder="Full Name" required>
+                  <label for="FullName">Full Name</label>
                 </div>
                 <div class="form-floating">
-                  <input type="text" class="form-control" id="floatingDisplay" placeholder="displayname" required>
-                  <label for="floatingInput">Display Name</label>
+                    <input type="tel" class="form-control" id="Phone" name="phoneNum" placeholder="0123456789" required>
+                  <label for="Phone">Phone Number</label>
+                </div>
+                <div class="form-floating mb-2">
+                    <textarea class="form-control" id="Address" name="Address" placeholder="Address" required></textarea>
+                  <label for="Address">Address</label>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="Postcode" name="Postcode" placeholder="Postcode" required>
+                          <label for="Postcode">Postcode</label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="City" name="City" placeholder="City" required>
+                          <label for="City">City</label>
+                        </div>
+                    </div>
+                </div>
+                <select class="form-select mb-2" aria-label="Region" name="Region">
+                    <option selected>Region</option>
+                    <option value="Northern">Northern Region (Perlis, Kedah, Penang, Perak)</option>
+                    <option value="East Coast">East Coast Region (Kelantan, Terengganu, Pahang)</option>
+                    <option value="Central">Central Region (Selangor, Kuala Lumpur, Putrajaya)</option>
+                    <option value="Southern">Southern Region (Negeri Sembilan, Melaka, Johor)</option>
+                </select>
+                <div class="form-floating">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
+                  <label for="email">Email address</label>
                 </div>
                 <div class="form-floating">
-                  <input type="tel" class="form-control" id="floatingPhone" placeholder="0123456789" required>
-                  <label for="floatingInput">Phone Number</label>
-                </div>
-                <div class="form-floating">
-                  <input type="email" class="form-control" id="floatingEmail" placeholder="name@example.com" required>
-                  <label for="floatingInput">Email address</label>
-                </div>
-                <div class="form-floating">
-                  <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
-                  <label for="floatingPassword">Password</label>
+                    <input type="password" class="form-control" id="Password" name="Password" placeholder="Password" required>
+                  <label for="Password">Password</label>
                 </div>
                 <div class="checkbox mb-3">
                     <a class="text-decoration-none" href="index.jsp">Log In</a>
