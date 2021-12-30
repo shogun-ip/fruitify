@@ -1,7 +1,7 @@
 <%-- 
-    Document   : index
-    Created on : Dec 25, 2021, 12:45:19 AM
-    Author     : YOMATASHI
+    Document   : registration
+    Created on : Dec 29, 2021, 11:12:03 PM
+    Author     : faris
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <title>Login</title>
+        <title>Registration</title>
         <style>
             html,
             body {
@@ -27,8 +27,8 @@
 
               display: flex;
               width: 100%;
-              max-width: 330px;
-              padding: 150px 15px 15px 15px;
+              max-width: 530px;
+              padding: 80px 160px;
               margin: auto;
             }
 
@@ -85,6 +85,18 @@
                 <h1 class="h3 mb-3 fw-normal">Logo Here</h1>
 
                 <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingFullName" placeholder="Full Name" required>
+                  <label for="floatingInput">Full Name</label>
+                </div>
+                <div class="form-floating">
+                  <input type="text" class="form-control" id="floatingDisplay" placeholder="displayname" required>
+                  <label for="floatingInput">Display Name</label>
+                </div>
+                <div class="form-floating">
+                  <input type="tel" class="form-control" id="floatingPhone" placeholder="0123456789" required>
+                  <label for="floatingInput">Phone Number</label>
+                </div>
+                <div class="form-floating">
                   <input type="email" class="form-control" id="floatingEmail" placeholder="name@example.com" required>
                   <label for="floatingInput">Email address</label>
                 </div>
@@ -93,10 +105,11 @@
                   <label for="floatingPassword">Password</label>
                 </div>
                 <div class="checkbox mb-3">
-                    <a class="text-decoration-none" href="registration.jsp">Sign Up</a>
+                    <a class="text-decoration-none" href="index.jsp">Log In</a>
                 </div>
-                <button class="w-100 btn btn-lg btn-primary" type="submit">Log In</button>
+                <button class="w-100 btn btn-lg btn-primary" type="submit">Sign Up</button>
               </form>
         </div>
     </body>
 </html>
+
