@@ -12,7 +12,19 @@ import java.io.Serializable;
  * @author YOMATASHI
  */
 public class Supplier implements Serializable{
+    int id;
     String name, region, logo;
+
+    public Supplier() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

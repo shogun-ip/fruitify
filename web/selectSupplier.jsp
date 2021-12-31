@@ -4,6 +4,9 @@
     Author     : YOMATASHI
 --%>
 
+<%@page import="java.util.Vector"%>
+<%@page import="model.Supplier"%>
+<%@page import="model.Account"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -66,22 +69,31 @@
                 <h2>Suppliers</h2>
                 <p class="fs-5">*Greyed out supplier is not available for your location</p>
             </div>
-            <div class="card bg-dark mb-4">
-                <img src="img/fruit-card-bg.jpg"
-                     class="card-img" alt="fruitify-card-bg">
-                <div class="card-img-overlay text-center">
-                    <br><br>
-                    <a class="card-text fs-1 text-white" href="#">Supplier name here</a>
-                </div>
-            </div>
-            <div class="card bg-dark mb-4">
-                <img src="img/fruit-card-bg.jpg"
-                     class="card-img greyed" alt="fruitify-card-bg">
-                <div class="card-img-overlay text-center">
-                    <br><br>
-                    <a class="card-text fs-1 text-white-50 disabled" href="#">Supplier name here</a>
-                </div>
-            </div>
+        <%
+            Account user = (Account)session.getAttribute("account");
+            Vector<Supplier> supplier = (Vector)request.getAttribute("supplier");
+            
+            
+            for(int i = 0; i < supplier.size(); i++){
+                if(user.getRegion().equals(supplier.get(i).getRegion())){
+                    out.println("<div class='card bg-dark mb-4'>" +
+                                    "<img src='img/fruit-card-bg.jpg' class='card-img' alt='fruitify-card-bg'>" +
+                                    "<div class='card-img-overlay text-center'>" +
+                                        "<br><br>" +
+                                        "<a class='card-text fs-1 text-white' href='#'>" + supplier.get(i).getName() + "</a>" +
+                                    "</div>" +
+                                 "</div>");
+                }else{
+                    out.println("<div class='card bg-dark mb-4'>" +
+                                    "<img src='img/fruit-card-bg.jpg' class='card-img greyed' alt='fruitify-card-bg'>" +
+                                    "<div class='card-img-overlay text-center'>" +
+                                        "<br><br>" +
+                                        "<a class='card-text fs-1 text-white-50 disabled' href='#'>" + supplier.get(i).getName() + "</a>" +
+                                    "</div>" +
+                                "</div>");
+                }
+            }
+        %>
         </div>
     </body>
 </html>

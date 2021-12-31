@@ -15,6 +15,8 @@ import model.Account;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -35,7 +37,8 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException, SQLException, ClassNotFoundException{
         response.setContentType("text/html;charset=UTF-8");
 
-//        Account account = new Account();
+        HttpSession session = request.getSession(true);
+        
         String name, address, city, region, email, password;
         int phoneNo, postcode;
         name = request.getParameter("FullName");
@@ -46,7 +49,17 @@ public class LoginServlet extends HttpServlet {
         region = request.getParameter("Region");
         email = request.getParameter("email");
         password = request.getParameter("Password");
-
+        
+        Account account = new Account();
+        account.setName(name);
+        account.setPhoneNo(phoneNo);
+        account.setAddress(address);
+        account.setPostcode(postcode);
+        account.setCity(city);
+        account.setRegion(region);
+        account.setEmail(email);
+        account.setPassword(password);
+        
         String driver = "com.mysql.jdbc.Driver";
         String dbName = "fruitify";
         String url = "jdbc:mysql://localhost/" + dbName + "?";
@@ -75,18 +88,9 @@ public class LoginServlet extends HttpServlet {
         st.close();
         con.close();
 
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet InsertServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Success</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        session.setAttribute("account", account);
+        RequestDispatcher rd = request.getRequestDispatcher("/supplierServlet");
+        rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
