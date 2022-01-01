@@ -13,7 +13,7 @@ import java.io.Serializable;
  */
 public class Supplier implements Serializable{
     int id;
-    String name, region, logo;
+    String name, region, link;
 
     public Supplier() {
     }
@@ -42,12 +42,14 @@ public class Supplier implements Serializable{
         this.region = region;
     }
 
-    public String getLogo() {
-        return logo;
+    public String getLink() {
+        return link;
     }
 
-    public void setLogo(String logo) {
-        this.logo = logo;
+    public void setLink(String link) {
+        this.link = link;
     }
+
+    
     
 }

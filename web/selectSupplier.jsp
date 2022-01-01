@@ -72,26 +72,38 @@
         <%
             Account user = (Account)session.getAttribute("account");
             Vector<Supplier> supplier = (Vector)request.getAttribute("supplier");
+            Vector<Supplier> activSup = new Vector<Supplier>();
+            Vector<Supplier> passivSup = new Vector<Supplier>();
             
-            
+            //separate available supplier according to user's region
             for(int i = 0; i < supplier.size(); i++){
                 if(user.getRegion().equals(supplier.get(i).getRegion())){
-                    out.println("<div class='card bg-dark mb-4'>" +
-                                    "<img src='img/fruit-card-bg.jpg' class='card-img' alt='fruitify-card-bg'>" +
-                                    "<div class='card-img-overlay text-center'>" +
-                                        "<br><br>" +
-                                        "<a class='card-text fs-1 text-white' href='#'>" + supplier.get(i).getName() + "</a>" +
-                                    "</div>" +
-                                 "</div>");
+                   activSup.addElement(supplier.get(i));
                 }else{
-                    out.println("<div class='card bg-dark mb-4'>" +
-                                    "<img src='img/fruit-card-bg.jpg' class='card-img greyed' alt='fruitify-card-bg'>" +
-                                    "<div class='card-img-overlay text-center'>" +
-                                        "<br><br>" +
-                                        "<a class='card-text fs-1 text-white-50 disabled' href='#'>" + supplier.get(i).getName() + "</a>" +
-                                    "</div>" +
-                                "</div>");
+                    passivSup.addElement(supplier.get(i));
                 }
+            }
+            
+            //print available supplier
+            for(int i = 0; i < activSup.size(); i++){
+                out.println("<div class='card bg-dark mb-4'>" +
+                                "<img src='img/fruit-card-bg.jpg' class='card-img' alt='fruitify-card-bg'>" +
+                                "<div class='card-img-overlay text-center'>" +
+                                    "<br><br>" +
+                                    "<a class='card-text fs-1 text-white' href='#'>" + activSup.get(i).getName() + "</a>" +
+                                "</div>" +
+                             "</div>");
+            }
+            
+            //print greyed out supplier
+            for(int i = 0; i < passivSup.size(); i++){
+                out.println("<div class='card bg-dark mb-4'>" +
+                                "<img src='img/fruit-card-bg.jpg' class='card-img greyed' alt='fruitify-card-bg'>" +
+                                "<div class='card-img-overlay text-center'>" +
+                                    "<br><br>" +
+                                    "<a class='card-text fs-1 text-white-50 disabled' href='#'>" + passivSup.get(i).getName() + "</a>" +
+                                "</div>" +
+                            "</div>");
             }
         %>
         </div>
