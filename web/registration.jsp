@@ -52,36 +52,20 @@
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav">
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                  </li>
-                  <li class="nav-item">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="index.jsp">Home</a>
                     <a class="nav-link" href="supplierServlet">Supplier</a>
-                  </li>
-                  <li class="nav-item">
                     <a class="nav-link" href="#">Promotion</a>
-                  </li>
-                  <li class="nav-item">
                     <a class="nav-link" href="#">About Us</a>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Account
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <li><a class="dropdown-item" href="#">Action</a></li>
-                      <li><a class="dropdown-item" href="#">Another action</a></li>
-                      <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                  </li>
-                </ul>
+                    <a class="nav-link active" aria-current="page" href="login.jsp">Account</a>
+                </div>
               </div>
             </div>
         </nav>
+        
         <!--Login-->
         <div class="form-signin">
-            <form name="loginForm" method="post" action="LoginServlet">
+            <form name="loginForm" method="post" action="RegisterServlet">
                 <h1 class="h3 mb-3 fw-normal">Logo Here</h1>
 
                 <div class="form-floating">
@@ -89,7 +73,7 @@
                   <label for="FullName">Full Name</label>
                 </div>
                 <div class="form-floating">
-                    <input type="tel" class="form-control" id="Phone" name="phoneNum" placeholder="0123456789" required>
+                    <input type="text" class="form-control" id="Phone" name="phoneNum" placeholder="0123456789" required>
                   <label for="Phone">Phone Number</label>
                 </div>
                 <div class="form-floating mb-2">
@@ -126,7 +110,7 @@
                   <label for="Password">Password</label>
                 </div>
                 <div class="checkbox mb-3">
-                    <a class="text-decoration-none" href="index.jsp">Log In</a>
+                    <a class="text-decoration-none" href="login.jsp">Log In</a>
                 </div>
                 <button class="w-100 btn btn-lg btn-primary" type="submit">Sign Up</button>
               </form>

@@ -57,7 +57,7 @@
                     <a class="nav-link active" aria-current="page" href="supplierServlet">Supplier</a>
                     <a class="nav-link" href="#">Promotion</a>
                     <a class="nav-link" href="#">About Us</a>
-                    <a class="nav-link" href="index.jsp">Account</a>
+                    <a class="nav-link" href="login.jsp">Account</a>
                 </div>
               </div>
             </div>

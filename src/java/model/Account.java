@@ -11,8 +11,8 @@ import java.io.Serializable;
  * @author faris
  */
 public class Account implements Serializable{
-    private String name, address, city, region, email, password;
-    private int phoneNo, postcode;
+    private String name, phoneNo, address, city, region, email, password;
+    private int postcode;
 
     public String getName() {
         return name;
@@ -20,6 +20,14 @@ public class Account implements Serializable{
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPhoneNo() {
+        return phoneNo;
+    }
+
+    public void setPhoneNo(String phoneNo) {
+        this.phoneNo = phoneNo;
     }
 
     public String getAddress() {
@@ -60,14 +68,6 @@ public class Account implements Serializable{
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public int getPhoneNo() {
-        return phoneNo;
-    }
-
-    public void setPhoneNo(int phoneNo) {
-        this.phoneNo = phoneNo;
     }
 
     public int getPostcode() {

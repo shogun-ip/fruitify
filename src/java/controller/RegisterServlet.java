@@ -11,18 +11,16 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Account;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author YOMATASHI
  */
-public class LoginServlet extends HttpServlet {
+public class RegisterServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,56 +32,50 @@ public class LoginServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException, ClassNotFoundException{
+            throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-
-        HttpSession session = request.getSession(true);
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
         
+        String name, phoneNo, address, city, region, email, password;
+        int postcode;
+        name = request.getParameter("FullName");
+        phoneNo = request.getParameter("phoneNum");
+        address = request.getParameter("Address");
+        postcode = Integer.parseInt(request.getParameter("Postcode"));
+        city = request.getParameter("City");
+        region = request.getParameter("Region");
+        email = request.getParameter("email");
+        password = request.getParameter("Password");
+                
         String driver = "com.mysql.jdbc.Driver";
         String dbName = "fruitify";
         String url = "jdbc:mysql://localhost/" + dbName + "?";
         String userName = "root";
         String pword = "";
-        String query = "SELECT * FROM useraccounts";
-       
+        String query = "INSERT INTO useraccounts(fullname, phoneNo, address, postcode, city, region, email, password) VALUES(?,?,?,?,?,?,?,?)";
+
         Class.forName(driver);
         Connection con = DriverManager.getConnection(url, userName, pword);
-        Statement st = con.createStatement(); 
-        ResultSet rs = st.executeQuery(query); 
+        PreparedStatement st = con.prepareStatement(query);
+
+        st.setString(1, name);
+        st.setString(2, phoneNo);
+        st.setString(3, address);
+        st.setInt(4, postcode);
+        st.setString(5, city);
+        st.setString(6, region);
+        st.setString(7, email);
+        st.setString(8, password);
         
-        boolean check = false;
-        while(rs.next()){
-            if(rs.getString(7).equals(email) && rs.getString(8).equals(password)){
-                check = true;
-                break;
-            }   
-            else
-                check = false;
+        st.executeUpdate();
+        
+        st.close();
+        con.close();
+        
+        try (PrintWriter out = response.getWriter()) {
+            RequestDispatcher rd = request.getRequestDispatcher("registration.jsp");
+            rd.include(request, response);
+            out.println("<p class='text-center'>Acount registered! Go to <a class='text-decoration-none' href='login.jsp'>login page</a>.</p>");
         }
-        
-        if(check == true){
-            Account account = new Account();
-            account.setName(rs.getString(1));
-            account.setPhoneNo(rs.getString(2));
-            account.setAddress(rs.getString(3));
-            account.setPostcode(rs.getInt(4));
-            account.setCity(rs.getString(5));
-            account.setRegion(rs.getString(6));
-            account.setEmail(email);
-            account.setPassword(password);
-            session.setAttribute("account", account);
-            RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
-            rd.forward(request, response);
-        }else{
-            try (PrintWriter out = response.getWriter()) {
-                RequestDispatcher rd = request.getRequestDispatcher("/login.jsp");
-                rd.include(request, response);
-                out.println("<p class='text-center error-msg'>Wrong email or password!</p>");
-            }
-        }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -98,12 +90,12 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try{
+        try {
             processRequest(request, response);
-        }catch(SQLException ex){
-            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -118,12 +110,12 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try{
+        try {
             processRequest(request, response);
-        }catch(SQLException ex){
-            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
