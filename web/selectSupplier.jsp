@@ -29,13 +29,9 @@
             img{
                 opacity: 70%;
             }
+            
             img.greyed{
                 opacity: 35%;
-            }
-            
-            a:link, a:visited, a:hover, a:active{
-                text-decoration: none;
-                color: white;
             }
             
             a.disabled{
@@ -75,6 +71,10 @@
             Vector<Supplier> activSup = new Vector<Supplier>();
             Vector<Supplier> passivSup = new Vector<Supplier>();
             
+            if(user == null){
+                out.println("<p>Please <a href='login.jsp'>log in</a> first.</p>");
+            }else{
+            
             //separate available supplier according to user's region
             for(int i = 0; i < supplier.size(); i++){
                 if(user.getRegion().equals(supplier.get(i).getRegion())){
@@ -90,7 +90,7 @@
                                 "<img src='img/fruit-card-bg.jpg' class='card-img' alt='fruitify-card-bg'>" +
                                 "<div class='card-img-overlay text-center'>" +
                                     "<br><br>" +
-                                    "<a class='card-text fs-1 text-white' href='#'>" + activSup.get(i).getName() + "</a>" +
+                                    "<a class='card-text fs-1 text-white text-decoration-none' href='#'>" + activSup.get(i).getName() + "</a>" +
                                 "</div>" +
                              "</div>");
             }
@@ -101,9 +101,11 @@
                                 "<img src='img/fruit-card-bg.jpg' class='card-img greyed' alt='fruitify-card-bg'>" +
                                 "<div class='card-img-overlay text-center'>" +
                                     "<br><br>" +
-                                    "<a class='card-text fs-1 text-white-50 disabled' href='#'>" + passivSup.get(i).getName() + "</a>" +
+                                    "<a class='card-text fs-1 text-white-50 disabled text-decoration-none' href='#'>" + passivSup.get(i).getName() + "</a>" +
                                 "</div>" +
                             "</div>");
+            }
+            
             }
         %>
         </div>
