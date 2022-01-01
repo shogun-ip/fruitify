@@ -90,7 +90,7 @@
                                 "<img src='img/fruit-card-bg.jpg' class='card-img' alt='fruitify-card-bg'>" +
                                 "<div class='card-img-overlay text-center'>" +
                                     "<br><br>" +
-                                    "<a class='card-text fs-1 text-white text-decoration-none' href='#'>" + activSup.get(i).getName() + "</a>" +
+                                    "<a class='card-text fs-1 text-white text-decoration-none' href='"+ activSup.get(i).getLink() +"'>" + activSup.get(i).getName() + "</a>" +
                                 "</div>" +
                              "</div>");
             }

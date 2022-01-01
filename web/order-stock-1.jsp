@@ -8,7 +8,7 @@ and open the template in the editor.
     	<head>
 		<meta charset='utf-8'>
 		<meta name='viewport' content='width=device-width, initial-scale=1'>
-		<title>Manage Product</title>
+		<title>Product page</title>
 		<link href='https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css' rel='stylesheet'>
 		<link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
 		<style>@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap);
@@ -92,10 +92,7 @@ and open the template in the editor.
                        letter-spacing: 1px;
                        color:#fff;
                     }
-                    
-    
-
-</style>
+                </style>
 		<script type='text/javascript' src=''></script>
 		<script type='text/javascript' src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'></script>
 		<script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js'></script>
@@ -111,20 +108,10 @@ and open the template in the editor.
               </button>
               <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <div class="navbar-nav">
-                    <a class="nav-link active" aria-current="page" href="index.jsp">Home</a>
+                    <a class="nav-link" href="index.jsp">Home</a>
                     <a class="nav-link" href="supplierServlet">Supplier</a>
                     <a class="nav-link" href="#">Promotion</a>
                     <a class="nav-link" href="#">About Us</a>
-                    <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Account
-                      </a>
-                      <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                      </ul>
-                    </li>
                     <a class="nav-link" href="login.jsp">Account</a>
                 </div>
               </div>
@@ -220,7 +207,7 @@ and open the template in the editor.
                 </div>
                 <div class="card">
                     <div class="image-section">
-                        <img src="images/red apple.jpg">
+                        <img src="img/red apple.jpg">
                     </div>
                     <div class="description">
                         <h1>Red Apple </h1>
