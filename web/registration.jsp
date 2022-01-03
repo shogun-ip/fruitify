@@ -42,7 +42,7 @@
               border-bottom-left-radius: 0;
             }
         </style>
-        <<script>
+        <script>
             function validateForm() {
                 let x = document.forms["loginForm"]["Region"].value;
                 if (x == "Region") {

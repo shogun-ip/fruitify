@@ -59,6 +59,7 @@ public class supplierServlet extends HttpServlet {
             temp.setName(rs.getString(2));
             temp.setRegion(rs.getString(3));
             temp.setLink(rs.getString(4));
+            temp.setEmail(rs.getString(5));
             supplier.addElement(temp);
             temp = new Supplier();
         }
