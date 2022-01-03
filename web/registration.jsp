@@ -42,6 +42,15 @@
               border-bottom-left-radius: 0;
             }
         </style>
+        <<script>
+            function validateForm() {
+                let x = document.forms["loginForm"]["Region"].value;
+                if (x == "Region") {
+                  alert("Choose a region");
+                  return false;
+                }
+            }
+        </script>
     </head>
     <body>
         <!--Navbar-->
@@ -65,7 +74,7 @@
         
         <!--Login-->
         <div class="form-signin">
-            <form name="loginForm" method="post" action="RegisterServlet">
+            <form name="loginForm" method="post" action="RegisterServlet" onsubmit="return validateForm()">
                 <h1 class="h3 mb-3 fw-normal">Logo Here</h1>
 
                 <div class="form-floating">
@@ -95,7 +104,7 @@
                     </div>
                 </div>
                 <select class="form-select mb-2" aria-label="Region" name="Region">
-                    <option selected>Region</option>
+                    <option selected disabled>Region</option>
                     <option value="Northern">Northern Region (Perlis, Kedah, Penang, Perak)</option>
                     <option value="East Coast">East Coast Region (Kelantan, Terengganu, Pahang)</option>
                     <option value="Central">Central Region (Selangor, Kuala Lumpur, Putrajaya)</option>

@@ -74,7 +74,7 @@ public class RegisterServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             RequestDispatcher rd = request.getRequestDispatcher("registration.jsp");
             rd.include(request, response);
-            out.println("<p class='text-center'>Acount registered! Go to <a class='text-decoration-none' href='login.jsp'>login page</a>.</p>");
+            out.println("<p class='text-center'>Account registered! Go to <a class='text-decoration-none' href='login.jsp'>login page</a>.</p>");
         }
     }
 
