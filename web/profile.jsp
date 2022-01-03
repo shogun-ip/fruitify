@@ -89,7 +89,7 @@
                     <a class="nav-link" href="supplierServlet">Supplier</a>
                     <a class="nav-link" href="#">Promotion</a>
                     <a class="nav-link" href="#">About Us</a>
-                    <a class="nav-link active" aria-current="page" href="login.jsp">Account</a>
+                    <a class="nav-link active" aria-current="page" href="LoginServlet">Account</a>
                 </div>
               </div>
             </div>
@@ -110,27 +110,27 @@
                                         out.println("<h4 class='text-right'>Profile</h4>");
                                     out.println("</div>");
                                     out.println("<div class='row mt-2'>");
-                                        out.println("<div class='col-md-20'><label class='labels'>Full Name</label><input type='text' class='form-control' placeholder='Full Name' value="
+                                        out.println("<div class='col-md-20'><label class='labels'>Full Name</label><input type='text' class='form-control' placeholder='Full Name' value='"
                                                 + user.getName()
-                                                + "</div>");
-                                        out.println("<div class='col-md-20 mt-2'><label class='labels'>Phone Number</label><input type='text' class='form-control' placeholder='Enter Phone Number' value="
+                                                + "'></div>");
+                                        out.println("<div class='col-md-20 mt-2'><label class='labels'>Phone Number</label><input type='text' class='form-control' placeholder='Enter Phone Number' value='"
                                                 + user.getPhoneNo()
-                                                + "></div>");
-                                        out.println("<div class='col-md-20 mt-2'><label class='labels'>Email</label><input type='text' class='form-control' placeholder='Enter Email' value="
+                                                + "'></div>");
+                                        out.println("<div class='col-md-20 mt-2'><label class='labels'>Email</label><input type='text' class='form-control' placeholder='Enter Email' value='"
                                                 + user.getEmail()
-                                                + " disabled></div>");
-                                        out.println("<div class='col-md-20 mt-2'><label class='labels'>Address</label><input type='text' class='form-control' placeholder='Enter Address' value="
+                                                + "' disabled></div>");
+                                        out.println("<div class='col-md-20 mt-2'><label class='labels'>Address</label><input type='text' class='form-control' placeholder='Enter Address' value='"
                                                 + user.getAddress()
-                                                + "></div>");
-                                        out.println("<div class='col-md-20 mt-2'><label class='labels'>Postcode</label><input type='text' class='form-control' placeholder='Enter Postcode' value="
+                                                + "'></div>");
+                                        out.println("<div class='col-md-20 mt-2'><label class='labels'>Postcode</label><input type='text' class='form-control' placeholder='Enter Postcode' value='"
                                                 + user.getPostcode()
-                                                + "></div>");
-                                        out.println("<div class='col-md-20 mt-2'><label class='labels'>City</label><input type='text' class='form-control' placeholder='Enter City' value="
+                                                + "'></div>");
+                                        out.println("<div class='col-md-20 mt-2'><label class='labels'>City</label><input type='text' class='form-control' placeholder='Enter City' value='"
                                                 + user.getCity()
-                                                + "></div>");
-                                        out.println("<div class='col-md-20 mt-2'><label class='labels'>Region</label><input type='text' class='form-control' placeholder='Enter Region' value="
+                                                + "'></div>");
+                                        out.println("<div class='col-md-20 mt-2'><label class='labels'>Region</label><input type='text' class='form-control' placeholder='Enter Region' value='"
                                                 + user.getRegion()
-                                                + "></div>");
+                                                + "'></div>");
                                     out.println("</div>");
                                 out.println("</div>");
                             out.println("</div>");

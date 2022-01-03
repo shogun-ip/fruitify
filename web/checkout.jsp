@@ -8,7 +8,6 @@
 body {
   font-family: Arial;
   font-size: 17px;
-  padding: 8px;
   background-color: #B6C197;
 }
 
@@ -112,7 +111,7 @@ hr {
                 <a class="nav-link" href="supplierServlet">Supplier</a>
                 <a class="nav-link" href="#">Promotion</a>
                 <a class="nav-link" href="#">About Us</a>
-                <a class="nav-link" href="login.jsp">Account</a>
+                <a class="nav-link" href="LoginServlet">Account</a>
             </div>
           </div>
         </div>

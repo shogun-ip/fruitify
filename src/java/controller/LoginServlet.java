@@ -56,17 +56,17 @@ public class LoginServlet extends HttpServlet {
             Statement st = con.createStatement(); 
             ResultSet rs = st.executeQuery(query); 
 
-            boolean check = false;
+            boolean checkpw = false;
             while(rs.next()){
                 if(rs.getString(7).equals(email) && rs.getString(8).equals(password)){
-                    check = true;
+                    checkpw = true;
                     break;
                 }   
                 else
-                    check = false;
+                    checkpw = false;
             }
 
-            if(check == true){
+            if(checkpw == true){
                 Account account = new Account();
                 account.setName(rs.getString(1));
                 account.setPhoneNo(rs.getString(2));

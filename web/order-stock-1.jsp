@@ -115,7 +115,7 @@ and open the template in the editor.
                     <a class="nav-link" href="supplierServlet">Supplier</a>
                     <a class="nav-link" href="#">Promotion</a>
                     <a class="nav-link" href="#">About Us</a>
-                    <a class="nav-link" href="login.jsp">Account</a>
+                    <a class="nav-link" href="LoginServlet">Account</a>
                 </div>
               </div>
             </div>
@@ -137,11 +137,11 @@ and open the template in the editor.
                         <br>
                         <form>
                             <label for="quantity">Quantity:</label>
-                                <input type="number" id="quantity" name="quantity" min="0" max="100" step="10" value="0">
+                                <input type="number" id="quantity" name="quantity" min="0" max="30" step="10" value="0">
                         </form>
                     </div>
                     <div class="button-group">
-                        <a href="" class="cart">Add to Cart</a>
+                        <a href="checkout.jsp" class="cart">Add to Cart</a>
                     </div>
                 </div>
                 <div class="card">
@@ -157,7 +157,7 @@ and open the template in the editor.
                         <br>
                         <form>
                             <label for="quantity">Quantity:</label>
-                                <input type="number" id="quantity" name="quantity" min="0" max="100" step="10" value="0">
+                                <input type="number" id="quantity" name="quantity" min="0" max="30" step="10" value="0">
                         </form>
                     </div>
                      <div class="button-group">
@@ -177,7 +177,7 @@ and open the template in the editor.
                         <br>
                         <form>
                             <label for="quantity">Quantity:</label>
-                                <input type="number" id="quantity" name="quantity" min="0" max="100" step="10" value="0">
+                                <input type="number" id="quantity" name="quantity" min="0" max="20" step="10" value="0">
                         </form>
                     </div>
                     <div class="button-group">
@@ -197,7 +197,7 @@ and open the template in the editor.
                         <br>
                         <form>
                             <label for="quantity">Quantity:</label>
-                                <input type="number" id="quantity" name="quantity" min="0" max="100" step="10" value="0">
+                                <input type="number" id="quantity" name="quantity" min="0" max="40" step="10" value="0">
                         </form>
                     </div>
                     <div class="button-group">
@@ -213,11 +213,11 @@ and open the template in the editor.
                         <br>
                         <p><b> RM1.10</b><span>each</span></p>
                         <br>
-                        <p>Availability: 135</p>
+                        <p>Availability: 130</p>
                         <br>
                         <form>
                             <label for="quantity">Quantity:</label>
-                                <input type="number" id="quantity" name="quantity" min="0" max="100" step="10" value="0">
+                                <input type="number" id="quantity" name="quantity" min="0" max="135" step="10" value="0">
                         </form>
                     </div>
                     <div class="button-group">
@@ -257,7 +257,7 @@ and open the template in the editor.
                         <br>
                         <form>
                             <label for="quantity">Quantity:</label>
-                                <input type="number" id="quantity" name="quantity" min="0" max="100" step="10" value="0">
+                                <input type="number" id="quantity" name="quantity" min="0" max="50" step="10" value="0">
                         </form>
                     </div>
                     <div class="button-group">
@@ -266,7 +266,7 @@ and open the template in the editor.
                 </div>
                 <div class="card">
                     <div class="image-section">
-                        <img src="images/red apple.jpg">
+                        <img src="img/red apple.jpg">
                     </div>
                     <div class="description">
                         <h1>Red Apple </h1>
@@ -275,7 +275,7 @@ and open the template in the editor.
                         <br>
                         <form>
                             <label for="quantity">Quantity:</label>
-                                <input type="number" id="quantity" name="quantity" min="0" max="100" step="10" value="0">
+                                <input type="number" id="quantity" name="quantity" min="0" max="120" step="10" value="0">
                         </form>
                     </div>
                     <div class="button-group">
