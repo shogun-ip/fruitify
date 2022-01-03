@@ -8,7 +8,7 @@ and open the template in the editor.
     	<head>
 		<meta charset='utf-8'>
 		<meta name='viewport' content='width=device-width, initial-scale=1'>
-		<title>Product page</title>
+		<title>Manage Product</title>
 		<link href='https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css' rel='stylesheet'>
 		<link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
 		<style>@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap);
@@ -39,10 +39,10 @@ and open the template in the editor.
                         align-items:center;
                         flex-direction:column;
                         box-shadow: 0px 2px 4px rgb(0,0,0,25%);
-                        width:325px;
+                        width:340px;
                         text-align: center;
                         margin:25px;
-                        cursor:ponter;
+                        cursor:pointer;
                         background-color: #fff;
                     }
                     .image-section{
@@ -53,7 +53,7 @@ and open the template in the editor.
                     }
                     .image-section img{
                         width:200px;
-                        height:180;
+                        height:180px;
                     }
                     .description{
                         text-align:center;
@@ -79,11 +79,11 @@ and open the template in the editor.
                     .button-group{
                         margin-top: 30px;
                     }
-                    .button-group.view:hover{
+                    .button-group.cart:hover{
                         background-color: #0b348d;
                         transition: 0.6s ease;
                     }
-                    .button-group .view{
+                    .button-group .cart{
                        background-color: #8A9B68;
                        font-size:14px;
                        padding:8px 20px;
@@ -92,7 +92,10 @@ and open the template in the editor.
                        letter-spacing: 1px;
                        color:#fff;
                     }
-                </style>
+                    
+    
+
+</style>
 		<script type='text/javascript' src=''></script>
 		<script type='text/javascript' src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'></script>
 		<script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js'></script>
@@ -127,10 +130,18 @@ and open the template in the editor.
                     </div>
                     <div class="description">
                         <h1> Banana </h1>
-                        <p><b> RM4.90</b><span>+/-1kg</span></p>
+                        <br>
+                        <p><b> RM4.90</b> <span>+/-1kg</span></p>
+                        <br>
+                        <p>Availability: 30</p>
+                        <br>
+                        <form>
+                            <label for="quantity">Quantity:</label>
+                                <input type="number" id="quantity" name="quantity" min="0" max="100" step="10" value="0">
+                        </form>
                     </div>
                     <div class="button-group">
-                        <a href="" class="view">View</a>
+                        <a href="" class="cart">Add to Cart</a>
                     </div>
                 </div>
                 <div class="card">
@@ -139,10 +150,18 @@ and open the template in the editor.
                     </div>
                     <div class="description">
                         <h1> Papaya </h1>
-                        <p><b> RM5.90</b><span>each</span></p>
+                        <br>
+                        <p><b> RM5.90</b> <span>each</span></p>
+                        <br>
+                        <p>Availability: 30</p>
+                        <br>
+                        <form>
+                            <label for="quantity">Quantity:</label>
+                                <input type="number" id="quantity" name="quantity" min="0" max="100" step="10" value="0">
+                        </form>
                     </div>
-                    <div class="button-group">
-                        <a href="" class="view">View</a>
+                     <div class="button-group">
+                        <a href="" class="cart">Add to Cart</a>
                     </div>
                 </div>
                 <div class="card">
@@ -151,10 +170,18 @@ and open the template in the editor.
                     </div>
                     <div class="description">
                         <h1> Pineapple </h1>
+                        <br>
                         <p><b> RM5.00</b><span>+/-1.5kg</span></p>
+                        <br>
+                        <p>Availability: 20</p>
+                        <br>
+                        <form>
+                            <label for="quantity">Quantity:</label>
+                                <input type="number" id="quantity" name="quantity" min="0" max="100" step="10" value="0">
+                        </form>
                     </div>
                     <div class="button-group">
-                        <a href="" class="view">View</a>
+                        <a href="" class="cart">Add to Cart</a>
                     </div>
                 </div>
                 <div class="card">
@@ -163,10 +190,18 @@ and open the template in the editor.
                     </div>
                     <div class="description">
                         <h1> Watermelon </h1>
+                        <br>
                         <p><b> RM2.29</b><span>+/-1kg</span></p>
+                        <br>
+                        <p>Availability: 40</p>
+                        <br>
+                        <form>
+                            <label for="quantity">Quantity:</label>
+                                <input type="number" id="quantity" name="quantity" min="0" max="100" step="10" value="0">
+                        </form>
                     </div>
                     <div class="button-group">
-                        <a href="" class="view">View</a>
+                        <a href="" class="cart">Add to Cart</a>
                     </div>
                 </div>
                 <div class="card">
@@ -175,10 +210,18 @@ and open the template in the editor.
                     </div>
                     <div class="description">
                         <h1>Green Apple </h1>
+                        <br>
                         <p><b> RM1.10</b><span>each</span></p>
+                        <br>
+                        <p>Availability: 135</p>
+                        <br>
+                        <form>
+                            <label for="quantity">Quantity:</label>
+                                <input type="number" id="quantity" name="quantity" min="0" max="100" step="10" value="0">
+                        </form>
                     </div>
                     <div class="button-group">
-                        <a href="" class="view">View</a>
+                        <a href="" class="cart">Add to Cart</a>
                     </div>
                 </div>
                 <div class="card">
@@ -187,10 +230,18 @@ and open the template in the editor.
                     </div>
                     <div class="description">
                         <h1>Mangosteen </h1>
+                        <br>
                         <p><b> RM11.90</b><span>+/-1kg</span></p>
+                        <br>
+                        <p>Availability: 100</p>
+                        <br>
+                        <form>
+                            <label for="quantity">Quantity:</label>
+                                <input type="number" id="quantity" name="quantity" min="0" max="100" step="10" value="0">
+                        </form>
                     </div>
                     <div class="button-group">
-                        <a href="" class="view">View</a>
+                        <a href="" class="cart">Add to Cart</a>
                     </div>
                 </div>
                 <div class="card">
@@ -199,22 +250,36 @@ and open the template in the editor.
                     </div>
                     <div class="description">
                         <h1>Durian </h1>
+                        <br>
                         <p><b> RM15.00 </b><span>+/-1kg</span></p>
+                        <br>
+                        <p>Availability: 50</p>
+                        <br>
+                        <form>
+                            <label for="quantity">Quantity:</label>
+                                <input type="number" id="quantity" name="quantity" min="0" max="100" step="10" value="0">
+                        </form>
                     </div>
                     <div class="button-group">
-                        <a href="" class="view">View</a>
+                        <a href="" class="cart">Add to Cart</a>
                     </div>
                 </div>
                 <div class="card">
                     <div class="image-section">
-                        <img src="img/red apple.jpg">
+                        <img src="images/red apple.jpg">
                     </div>
                     <div class="description">
                         <h1>Red Apple </h1>
                         <p><b> RM1.10</b><span>each</span></p>
+                        <p>Availability: 120</p>
+                        <br>
+                        <form>
+                            <label for="quantity">Quantity:</label>
+                                <input type="number" id="quantity" name="quantity" min="0" max="100" step="10" value="0">
+                        </form>
                     </div>
                     <div class="button-group">
-                        <a href="" class="view">View</a>
+                        <a href="" class="cart">Add to Cart</a>
                     </div>
                 </div>
                     
