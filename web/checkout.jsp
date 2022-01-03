@@ -45,7 +45,7 @@ body {
   padding: 0 16px;
 }
 
-.container {
+.containerr {
   background-color: #f2f2f2;
   padding: 5px 20px 15px 20px;
   border: 1px solid lightgrey;
@@ -99,94 +99,88 @@ hr {
 </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #8A9B68;">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="index.jsp">Fruitify</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <div class="navbar-nav">
-                    <a class="nav-link active" aria-current="page" href="index.jsp">Home</a>
-                    <a class="nav-link" href="supplierServlet">Supplier</a>
-                    <a class="nav-link" href="#">Promotion</a>
-                    <a class="nav-link" href="#">About Us</a>
-                    <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Account
-                      </a>
-                      <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                      </ul>
-                    </li>
-                    <a class="nav-link" href="login.jsp">Account</a>
-                </div>
-              </div>
-            </div>
-        </nav>
-    <h2><b>Payment Details</b></h2>
-<p>Complete your purchase by providing your payment details</p>
-<div class="row">
-  <div class="col-75">
-    <div class="container">
-      <form action="">
-      
-        <div class="row">
-          <div class="col-50">
-            <h3>Billing Address</h3>
-            <label for="fname"><i class="fa fa-user"></i> Name</label>
-            <input type="text" id="fname" name="firstname" placeholder="John Doe">
-            <label for="email"><i class="fa fa-envelope"></i> Email</label>
-            <input type="text" id="email" name="email" placeholder="email@example.com">
-            <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
-            <input type="text" id="adr" name="address" placeholder="Taman Setia 3, Jalan Setia">
-            <label for="city"><i class="fa fa-institution"></i> City</label>
-            <input type="text" id="city" name="city" placeholder="Bangi">
-
-            <div class="row">
-              <div class="col-50">
-                <label for="state">State</label>
-                <input type="text" id="state" name="state" placeholder="Selangor">
-              </div>
-              <div class="col-50">
-                <label for="zip">Zip</label>
-                <input type="text" id="zip" name="zip" placeholder="54000">
-              </div>
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #8A9B68;">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index.jsp">Fruitify</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <div class="navbar-nav">
+                <a class="nav-link" href="index.jsp">Home</a>
+                <a class="nav-link" href="supplierServlet">Supplier</a>
+                <a class="nav-link" href="#">Promotion</a>
+                <a class="nav-link" href="#">About Us</a>
+                <a class="nav-link" href="login.jsp">Account</a>
             </div>
           </div>
-
-          <div class="col-50">
-            <h3>Payment Information</h3>
-            <label for="fname">Accepted Cards</label>
-            <div class="icon-container">
-              <i class="fa fa-cc-visa" style="color:navy;"></i>
-              <i class="fa fa-cc-mastercard" style="color:red;"></i>
-               <i class="fa fa-cc-paypal" style="color:blue;"></i>
-            </div>
-            <label for="ccnum">Card number</label>
-            <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
-            <label for="expmonth">Exp Month</label>
-            <input type="text" id="expmonth" name="expmonth" placeholder="September">
-            <div class="row">
-              <div class="col-50">
-                <label for="expyear">Exp Year</label>
-                <input type="text" id="expyear" name="expyear" placeholder="2018">
-              </div>
-              <div class="col-50">
-                <label for="cvv">CVV</label>
-                <input type="text" id="cvv" name="cvv" placeholder="Three digits">
-              </div>
-            </div>
-          </div>
-          
         </div>
-          <button class="w-100 btn btn-lg btn-primary" type="submit">Place Order</button>
-      </form>
+    </nav>
+    
+    <div class="container mt-3">
+        <h2><b>Payment Details</b></h2>
+        <p>Complete your purchase by providing your payment details</p>
+        <div class="row">
+          <div class="col-75">
+            <div class="containerr">
+              <form action="#" method="post">
+
+                <div class="row">
+                  <div class="col-50">
+                    <h3>Billing Address</h3>
+                    <label for="fname"><i class="fa fa-user"></i> Name</label>
+                    <input type="text" id="fname" name="firstname" placeholder="John Doe">
+                    <label for="email"><i class="fa fa-envelope"></i> Email</label>
+                    <input type="text" id="email" name="email" placeholder="email@example.com">
+                    <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
+                    <input type="text" id="adr" name="address" placeholder="Taman Setia 3, Jalan Setia">
+                    <label for="city"><i class="fa fa-institution"></i> City</label>
+                    <input type="text" id="city" name="city" placeholder="Bangi">
+
+                    <div class="row">
+                      <div class="col-50">
+                        <label for="state">State</label>
+                        <input type="text" id="state" name="state" placeholder="Selangor">
+                      </div>
+                      <div class="col-50">
+                        <label for="zip">Zip</label>
+                        <input type="text" id="zip" name="zip" placeholder="54000">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-50">
+                    <h3>Payment Information</h3>
+                    <label for="fname">Accepted Cards</label>
+                    <div class="icon-container">
+                      <i class="fa fa-cc-visa" style="color:navy;"></i>
+                      <i class="fa fa-cc-mastercard" style="color:red;"></i>
+                       <i class="fa fa-cc-paypal" style="color:blue;"></i>
+                    </div>
+                    <label for="ccnum">Card number</label>
+                    <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
+                    <label for="expmonth">Exp Month</label>
+                    <input type="text" id="expmonth" name="expmonth" placeholder="September">
+                    <div class="row">
+                      <div class="col-50">
+                        <label for="expyear">Exp Year</label>
+                        <input type="text" id="expyear" name="expyear" placeholder="2018">
+                      </div>
+                      <div class="col-50">
+                        <label for="cvv">CVV</label>
+                        <input type="text" id="cvv" name="cvv" placeholder="Three digits">
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                  <button class="w-100 btn btn-lg btn-primary" type="submit">Place Order</button>
+              </form>
+            </div>
+          </div>
+        </div>
     </div>
-  </div>
-</div>
 
 </body>
 </html>
