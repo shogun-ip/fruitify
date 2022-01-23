@@ -13,15 +13,7 @@ import java.io.Serializable;
  */
 public class Supplier implements Serializable{
     int id;
-    String name, region, link, email;
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    String name, region, link;
 
     public Supplier() {
     }

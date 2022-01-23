@@ -51,7 +51,7 @@ public class RegisterServlet extends HttpServlet {
         String url = "jdbc:mysql://localhost/" + dbName + "?";
         String userName = "root";
         String pword = "";
-        String query = "INSERT INTO useraccounts(fullname, phoneNo, address, postcode, city, region, email, password, role) VALUES(?,?,?,?,?,?,?,?,'vendor')";
+        String query = "INSERT INTO useraccounts(fullname, phoneNo, address, postcode, city, region, email, password, role) VALUES(?,?,?,?,?,?,?,?,?)";
 
         Class.forName(driver);
         Connection con = DriverManager.getConnection(url, userName, pword);
@@ -65,6 +65,7 @@ public class RegisterServlet extends HttpServlet {
         st.setString(6, region);
         st.setString(7, email);
         st.setString(8, password);
+        st.setString(9, "vendor");
         
         st.executeUpdate();
         
