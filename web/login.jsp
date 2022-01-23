@@ -28,7 +28,7 @@
               display: flex;
               width: 100%;
               max-width: 330px;
-              padding: 150px 15px 15px 15px;
+              padding: 150px 15px 15px 60px;
               margin: auto;
             }
             
