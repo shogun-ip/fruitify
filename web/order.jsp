@@ -115,7 +115,16 @@ and open the template in the editor.
               <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <div class="navbar-nav">
                     <a class="nav-link" href="index.jsp">Home</a>
-                    <a class="nav-link" href="supplierServlet">Supplier</a>
+                    <%--
+                        Account user = (Account)session.getAttribute("account");
+                        if(user.getRole().equals("supplier")){
+                            out.println("<a class='nav-link' href='editStockServlet'>Supplier</a>");
+                            out.println("<a class='nav-link' href='salesOverviewServlet'>Sales Overview</a>");
+                        }else{
+                            out.println("<a class='nav-link' href='supplierServlet'>Supplier</a>");
+                        }
+                    --%>
+                    <a class="nav-link active" aria-current="page" href="supplierServlet">Supplier</a>
                     <a class="nav-link" href="#">Promotion</a>
                     <a class="nav-link" href="#">About Us</a>
                     <a class="nav-link" href="LoginServlet">Account</a>
@@ -124,11 +133,38 @@ and open the template in the editor.
             </div>
         </nav>
         
+        <div class="container pt-3">
+            <div class="row">
+                <div class="p-3 bg-light text-center">
+                    <%
+                        int supplier_id = (Integer)request.getAttribute("supplier_id");
+                        switch(supplier_id){
+                            case 1:
+                                out.println("HQ Premium Fruits");
+                                break;
+                            case 2:
+                                out.println("Yow Seng Sdn Bhd");
+                                break;
+                            case 3:
+                                out.println("DNA Fruit Centre");
+                                break;
+                            case 4:
+                                out.println("BC Supply Sdn Bhd");
+                                break;
+                            default:
+                                out.println("Fruit Nature");
+                                break;
+                        }
+                    %>
+                </div>
+            </div>
+        </div>            
+                    
         <div class="section">
             <div class="cards">
         <%
             Vector<Fruits> fruits = (Vector)request.getAttribute("fruits");
-            int supplier_id = (Integer)request.getAttribute("supplier_id");
+            
             DecimalFormat format = new DecimalFormat("RM#0.00");
             for(int i = 0; i < fruits.size(); i++){
                 if(fruits.get(i).getSupplier_id() == supplier_id){

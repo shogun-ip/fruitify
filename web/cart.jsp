@@ -117,6 +117,7 @@
         
     </head>
     <body>
+        <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #8A9B68;">
             <div class="container-fluid">
               <a class="navbar-brand" href="index.jsp">Fruitify</a>
@@ -125,21 +126,11 @@
               </button>
               <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <div class="navbar-nav">
-                    <a class="nav-link active" aria-current="page" href="index.jsp">Home</a>
+                    <a class="nav-link" href="index.jsp">Home</a>
                     <a class="nav-link" href="supplierServlet">Supplier</a>
                     <a class="nav-link" href="#">Promotion</a>
                     <a class="nav-link" href="#">About Us</a>
-                    <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Account
-                      </a>
-                      <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                      </ul>
-                    </li>
-                    <a class="nav-link" href="login.jsp">Account</a>
+                    <a class="nav-link" href="LoginServlet">Account</a>
                 </div>
               </div>
             </div>

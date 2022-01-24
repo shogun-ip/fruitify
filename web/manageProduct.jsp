@@ -1,3 +1,4 @@
+<%@page import="model.Account"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -76,7 +77,15 @@ and open the template in the editor.
               <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <div class="navbar-nav">
                     <a class="nav-link" href="index.jsp">Home</a>
-                    <a class="nav-link" href="supplierServlet">Supplier</a>
+                    <%
+                        Account user = (Account)session.getAttribute("account");
+                        if(user.getRole().equals("supplier")){
+                            out.println("<a class='nav-link active' aria-current='page' href='editStockServlet'>Supplier</a>");
+                            out.println("<a class='nav-link' href='salesOverviewServlet'>Sales Overview</a>");
+                        }else{
+                            out.println("<a class='nav-link' href='supplierServlet'>Supplier</a>");
+                        }
+                    %>
                     <a class="nav-link" href="#">Promotion</a>
                     <a class="nav-link" href="#">About Us</a>
                     <a class="nav-link" href="LoginServlet">Account</a>
@@ -84,6 +93,11 @@ and open the template in the editor.
               </div>
             </div>
         </nav>
+        
+        <%
+//            Account user = (Account)session.getAttribute("account");
+            
+        %>
         
         <div class="container">
             <div class="row">
@@ -146,7 +160,7 @@ and open the template in the editor.
                       </tr>
                       <tr>
                         <th>5</th>
-                        <th><img src="img/red apple.png" alt="apple" width="100" height="80"></th>
+                        <th><img src="img/red apple.jpg" alt="apple" width="100" height="80"></th>
                         <th>Red Apple</th>
                         <th> Imported</th>
                         <th>RM1.05</th>

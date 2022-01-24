@@ -50,14 +50,16 @@
               <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <div class="navbar-nav">
                     <a class="nav-link" href="index.jsp">Home</a>
-                    <%
+                    <%--
                         Account user = (Account)session.getAttribute("account");
                         if(user.getRole().equals("supplier")){
-                            out.println("<a class='nav-link active' aria-current='page' href='supplierServlet'>Supplier</a>");
+                            out.println("<a class='nav-link active' aria-current='page' href='editStockServlet'>Supplier</a>");
+                            out.println("<a class='nav-link' href='salesOverviewServlet'>Sales Overview</a>");
                         }else{
                             out.println("<a class='nav-link active' aria-current='page' href='supplierServlet'>Supplier</a>");
                         }
-                    %>
+                    --%>
+                    <a class="nav-link active" aria-current="page" href="supplierServlet">Supplier</a>
                     <a class="nav-link" href="#">Promotion</a>
                     <a class="nav-link" href="#">About Us</a>
                     <a class="nav-link" href="LoginServlet">Account</a>
@@ -73,7 +75,7 @@
                 <p class="fs-5">*Greyed out supplier is not available for your location</p>
             </div>
         <%
-            //Account user = (Account)session.getAttribute("account");
+            Account user = (Account)session.getAttribute("account");
             Vector<Supplier> supplier = (Vector)request.getAttribute("supplier");
             Vector<Supplier> activSup = new Vector<Supplier>();
             Vector<Supplier> passivSup = new Vector<Supplier>();
