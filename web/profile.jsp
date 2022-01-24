@@ -85,10 +85,20 @@
               </button>
               <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <div class="navbar-nav">
-                    <a class="nav-link" href="index.jsp">Home</a>
+                    <a class="nav-link active" aria-current="page" href="index.jsp">Home</a>
                     <a class="nav-link" href="supplierServlet">Supplier</a>
                     <a class="nav-link" href="#">Promotion</a>
                     <a class="nav-link" href="#">About Us</a>
+                    <!-- Sales overview for supplier acc -->
+                    <%
+                        Account user = (Account)session.getAttribute("account");
+                        if(user == null){
+                            //
+                        }else{
+                            if(user.getRole().equals("supplier"))
+                                out.println("<a class='nav-link' href='salesOverviewServlet'>Sales Overview</a>");
+                        }
+                    %>
                     <a class="nav-link active" aria-current="page" href="LoginServlet">Account</a>
                 </div>
               </div>
@@ -96,7 +106,7 @@
         </nav>
         
         <% 
-            Account user = (Account)session.getAttribute("account"); 
+            //Account user = (Account)session.getAttribute("account"); 
 
             if(user == null){
                 out.println("<p>Please <a href='login.jsp'>log in</a> first.</p>");

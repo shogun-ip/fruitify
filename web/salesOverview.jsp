@@ -36,9 +36,9 @@
                 <div class="navbar-nav">
                     <a class="nav-link" href="index.jsp">Home</a>
                     <a class="nav-link" href="editStockServlet">Supplier</a>
-                    <a class="nav-link active" aria-current="page" href="salesOverviewServlet">Sales Overview</a>
                     <a class="nav-link" href="#">Promotion</a>
                     <a class="nav-link" href="#">About Us</a>
+                    <a class="nav-link active" aria-current="page" href="salesOverviewServlet">Sales Overview</a>
                     <a class="nav-link" href="LoginServlet">Account</a>
                 </div>
               </div>
