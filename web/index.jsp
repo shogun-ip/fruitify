@@ -4,6 +4,7 @@
     Author     : YOMATASHI
 --%>
 
+<%@page import="model.Account"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -38,6 +39,16 @@
                     <a class="nav-link" href="supplierServlet">Supplier</a>
                     <a class="nav-link" href="#">Promotion</a>
                     <a class="nav-link" href="#">About Us</a>
+                    <!-- Sales overview for supplier acc -->
+                    <%
+                        Account user = (Account)session.getAttribute("account");
+                        if(user == null){
+                            //
+                        }else{
+                            if(user.getRole().equals("supplier"))
+                                out.println("<a class='nav-link' href='salesOverviewServlet'>Sales Overview</a>");
+                        }
+                    %>
                     <a class="nav-link" href="LoginServlet">Account</a>
                 </div>
               </div>
