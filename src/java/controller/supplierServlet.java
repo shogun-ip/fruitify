@@ -18,6 +18,7 @@ import java.sql.*;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Account;
 
 /**
  *
@@ -39,6 +40,7 @@ public class supplierServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         HttpSession session = request.getSession(true);
+        Account user = (Account)session.getAttribute("account");
         Vector<Supplier> supplier = new Vector<Supplier>();
         
         String driver = "com.mysql.jdbc.Driver";
@@ -62,10 +64,20 @@ public class supplierServlet extends HttpServlet {
             supplier.addElement(temp);
             temp = new Supplier();
         }
-        
-        request.setAttribute("supplier", supplier);
-        RequestDispatcher rd = request.getRequestDispatcher("/selectSupplier.jsp");
-        rd.forward(request, response);
+        if(user == null){
+            request.setAttribute("supplier", supplier);
+            RequestDispatcher rd = request.getRequestDispatcher("/selectSupplier.jsp");
+            rd.forward(request, response);
+        }else{
+            if(user.getRole().equals("supplier")){
+                RequestDispatcher rd = request.getRequestDispatcher("editStockServlet");
+                rd.forward(request, response);
+            }else{
+                request.setAttribute("supplier", supplier);
+                RequestDispatcher rd = request.getRequestDispatcher("/selectSupplier.jsp");
+                rd.forward(request, response);
+            }
+        }
         
     }
 

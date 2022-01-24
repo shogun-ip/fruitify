@@ -77,7 +77,7 @@ and open the template in the editor.
               <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <div class="navbar-nav">
                     <a class="nav-link" href="index.jsp">Home</a>
-                    <%
+                    <%--
                         Account user = (Account)session.getAttribute("account");
                         if(user.getRole().equals("supplier")){
                             out.println("<a class='nav-link active' aria-current='page' href='editStockServlet'>Supplier</a>");
@@ -85,7 +85,8 @@ and open the template in the editor.
                         }else{
                             out.println("<a class='nav-link' href='supplierServlet'>Supplier</a>");
                         }
-                    %>
+                    --%>
+                    <a class="nav-link active" aria-current="page" href="supplierServlet">Supplier</a>
                     <a class="nav-link" href="#">Promotion</a>
                     <a class="nav-link" href="#">About Us</a>
                     <a class="nav-link" href="LoginServlet">Account</a>
@@ -95,7 +96,7 @@ and open the template in the editor.
         </nav>
         
         <%
-//            Account user = (Account)session.getAttribute("account");
+            Account user = (Account)session.getAttribute("account");
             
         %>
         
