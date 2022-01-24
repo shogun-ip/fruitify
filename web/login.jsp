@@ -4,6 +4,7 @@
     Author     : YOMATASHI
 --%>
 
+<%@page import="model.Account"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -28,7 +29,7 @@
               display: flex;
               width: 100%;
               max-width: 330px;
-              padding: 150px 15px 15px 15px;
+              padding: 150px 15px 15px 60px;
               margin: auto;
             }
             
@@ -65,7 +66,7 @@
                     <a class="nav-link" href="supplierServlet">Supplier</a>
                     <a class="nav-link" href="#">Promotion</a>
                     <a class="nav-link" href="#">About Us</a>
-                    <a class="nav-link active" aria-current="page" href="login.jsp">Account</a>
+                    <a class="nav-link active" aria-current="page" href="LoginServlet">Account</a>
                 </div>
               </div>
             </div>

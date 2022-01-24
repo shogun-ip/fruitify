@@ -7,6 +7,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -38,50 +39,58 @@ public class LoginServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         HttpSession session = request.getSession(true);
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
+        Account user = (Account)session.getAttribute("account");
         
-        String driver = "com.mysql.jdbc.Driver";
-        String dbName = "fruitify";
-        String url = "jdbc:mysql://localhost/" + dbName + "?";
-        String userName = "root";
-        String pword = "";
-        String query = "SELECT * FROM useraccounts";
-       
-        Class.forName(driver);
-        Connection con = DriverManager.getConnection(url, userName, pword);
-        Statement st = con.createStatement(); 
-        ResultSet rs = st.executeQuery(query); 
-        
-        boolean check = false;
-        while(rs.next()){
-            if(rs.getString(7).equals(email) && rs.getString(8).equals(password)){
-                check = true;
-                break;
-            }   
-            else
-                check = false;
-        }
-        
-        if(check == true){
-            Account account = new Account();
-            account.setName(rs.getString(1));
-            account.setPhoneNo(rs.getString(2));
-            account.setAddress(rs.getString(3));
-            account.setPostcode(rs.getInt(4));
-            account.setCity(rs.getString(5));
-            account.setRegion(rs.getString(6));
-            account.setEmail(email);
-            account.setPassword(password);
-            session.setAttribute("account", account);
-            RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
-            rd.forward(request, response);
-        }else{
-            try (PrintWriter out = response.getWriter()) {
-                RequestDispatcher rd = request.getRequestDispatcher("/login.jsp");
-                rd.include(request, response);
-                out.println("<p class='text-center error-msg'>Wrong email or password!</p>");
+        if(user == null){
+            String email = request.getParameter("email");
+            String password = request.getParameter("password");
+
+            String driver = "com.mysql.jdbc.Driver";
+            String dbName = "fruitify";
+            String url = "jdbc:mysql://localhost/" + dbName + "?";
+            String userName = "root";
+            String pword = "";
+            String query = "SELECT * FROM useraccounts";
+
+            Class.forName(driver);
+            Connection con = DriverManager.getConnection(url, userName, pword);
+            Statement st = con.createStatement(); 
+            ResultSet rs = st.executeQuery(query); 
+
+            boolean checkpw = false;
+            while(rs.next()){
+                if(rs.getString(7).equals(email) && rs.getString(8).equals(password)){
+                    checkpw = true;
+                    break;
+                }
+                else{
+                    checkpw = false;
+                }
             }
+            if(checkpw){
+                Account account = new Account();
+                account.setName(rs.getString(1));
+                account.setPhoneNo(rs.getString(2));
+                account.setAddress(rs.getString(3));
+                account.setPostcode(rs.getInt(4));
+                account.setCity(rs.getString(5));
+                account.setRegion(rs.getString(6));
+                account.setEmail(email);
+                account.setPassword(password);
+                account.setRole(rs.getString(9));
+                session.setAttribute("account", account);
+                RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
+                rd.forward(request, response);
+            }else{
+                try (PrintWriter out = response.getWriter()) {
+                    RequestDispatcher rd = request.getRequestDispatcher("/login.jsp");
+                    rd.include(request, response);
+                    out.println("<p class='text-center error-msg'>Note: Make sure your email and password is correct</p>");
+                }
+            }
+        }else{
+            RequestDispatcher rd = request.getRequestDispatcher("/profile.jsp");
+            rd.forward(request, response);
         }
         
     }

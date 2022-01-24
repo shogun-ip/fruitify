@@ -1,11 +1,12 @@
-<%-- 
-    Document   : order-stock-3
-    Created on : Jan 4, 2022, 1:20:47 AM
-    Author     : HP
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="model.Fruits"%>
+<%@page import="java.util.Vector"%>
+<%@page import="java.text.DecimalFormat" %>
 <!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
 <html>
     	<head>
 		<meta charset='utf-8'>
@@ -114,119 +115,83 @@
               <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <div class="navbar-nav">
                     <a class="nav-link" href="index.jsp">Home</a>
-                    <a class="nav-link" href="supplierServlet">Supplier</a>
+                    <%--
+                        Account user = (Account)session.getAttribute("account");
+                        if(user.getRole().equals("supplier")){
+                            out.println("<a class='nav-link' href='editStockServlet'>Supplier</a>");
+                            out.println("<a class='nav-link' href='salesOverviewServlet'>Sales Overview</a>");
+                        }else{
+                            out.println("<a class='nav-link' href='supplierServlet'>Supplier</a>");
+                        }
+                    --%>
+                    <a class="nav-link active" aria-current="page" href="supplierServlet">Supplier</a>
                     <a class="nav-link" href="#">Promotion</a>
                     <a class="nav-link" href="#">About Us</a>
-                    <a class="nav-link" href="login.jsp">Account</a>
+                    <a class="nav-link" href="LoginServlet">Account</a>
                 </div>
               </div>
             </div>
         </nav>
         
-        <div class="section">
-            <div class="cards">
-               
-                <div class="card">
-                    <div class="image-section">
-                        <img src="img/dragon.jpg">
-                    </div>
-                    <div class="description">
-                        <h1> Dragon Fruit </h1>
-                        <br>
-                        <p><b> RM7.90</b> <span>+/-1kg</span></p>
-                        <br>
-                        <p>Availability: 30</p>
-                        <br>
-                        <form>
-                            <label for="quantity">Quantity:</label>
-                                <input type="number" id="quantity" name="quantity" min="0" max="100" step="10" value="0">
-                        </form>
-                    </div>
-                    <div class="button-group">
-                        <a href="" class="cart">Add to Cart</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="image-section">
-                        <img src="img/mangosteen.jpg">
-                    </div>
-                    <div class="description">
-                        <h1>Mangosteen </h1>
-                        <br>
-                        <p><b> RM11.90</b><span>+/-1kg</span></p>
-                        <br>
-                        <p>Availability: 100</p>
-                        <br>
-                        <form>
-                            <label for="quantity">Quantity:</label>
-                                <input type="number" id="quantity" name="quantity" min="0" max="100" step="10" value="0">
-                        </form>
-                    </div>
-                    <div class="button-group">
-                        <a href="" class="cart">Add to Cart</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="image-section">
-                        <img src="img/kiwi.jpg">
-                    </div>
-                    <div class="description">
-                        <h1> Kiwi </h1>
-                        <br>
-                        <p><b> RM10.00</b><span>+/-1.5kg</span></p>
-                        <br>
-                        <p>Availability: 100</p>
-                        <br>
-                        <form>
-                            <label for="quantity">Quantity:</label>
-                                <input type="number" id="quantity" name="quantity" min="0" max="100" step="10" value="0">
-                        </form>
-                    </div>
-                    <div class="button-group">
-                        <a href="" class="cart">Add to Cart</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="image-section">
-                        <img src="img/durian.jpg">
-                    </div>
-                    <div class="description">
-                        <h1>Durian </h1>
-                        <br>
-                        <p><b> RM15.00 </b><span>+/-1kg</span></p>
-                        <br>
-                        <p>Availability: 50</p>
-                        <br>
-                        <form>
-                            <label for="quantity">Quantity:</label>
-                                <input type="number" id="quantity" name="quantity" min="0" max="100" step="10" value="0">
-                        </form>
-                    </div>
-                    <div class="button-group">
-                        <a href="" class="cart">Add to Cart</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="image-section">
-                        <img src="img/mango.jpg">
-                    </div>
-                    <div class="description">
-                        <h1>Mango </h1>
-                        <br>
-                        <p><b> RM1.10</b><span>each</span></p>
-                        <br>
-                        <p>Availability: 40</p>
-                        <br>
-                        <form>
-                            <label for="quantity">Quantity:</label>
-                                <input type="number" id="quantity" name="quantity" min="0" max="100" step="10" value="0">
-                        </form>
-                    </div>
-                    <div class="button-group">
-                        <a href="" class="cart">Add to Cart</a>
-                    </div>
+        <div class="container pt-3">
+            <div class="row">
+                <div class="p-3 bg-light text-center">
+                    <%
+                        int supplier_id = (Integer)request.getAttribute("supplier_id");
+                        switch(supplier_id){
+                            case 1:
+                                out.println("HQ Premium Fruits");
+                                break;
+                            case 2:
+                                out.println("Yow Seng Sdn Bhd");
+                                break;
+                            case 3:
+                                out.println("DNA Fruit Centre");
+                                break;
+                            case 4:
+                                out.println("BC Supply Sdn Bhd");
+                                break;
+                            default:
+                                out.println("Fruit Nature");
+                                break;
+                        }
+                    %>
                 </div>
             </div>
+        </div>            
+                    
+        <div class="section">
+            <div class="cards">
+        <%
+            Vector<Fruits> fruits = (Vector)request.getAttribute("fruits");
+            
+            DecimalFormat format = new DecimalFormat("RM#0.00");
+            for(int i = 0; i < fruits.size(); i++){
+                if(fruits.get(i).getSupplier_id() == supplier_id){
+                    out.print("<div class='card'>" +
+                                    "<div class='image-section'>" +
+                                        "<img src='img/"+ fruits.get(i).getPict() +"'>" +
+                                    "</div>" +
+                                    "<div class='description'>" +
+                                       "<h1>"+ fruits.get(i).getName() +"</h1><br>"+
+                                       "<p><b>"); 
+                    out.print(format.format(fruits.get(i).getPrice())); 
+                    out.println(      "</b> <span>each</span></p><br>" +
+                                       "<p>Availability: "+ fruits.get(i).getStock() +"</p><br>" +
+                                       "<form>" +
+                                           "<label for='quantity'>Quantity:</label>" +
+                                           "<input type='number' id='quantity' name='quantity' min='0' max='"+ fruits.get(i).getStock() +"' step='10' placeholder='0'>" +
+                                       "</form>" +
+                                    "</div>" +
+                                    "<div class='button-group'>" +
+                                       "<a href='checkout.jsp' class='cart'>Add to Cart</a>" +
+                                    "</div>" +
+                                 "</div>");
+                }
+            }
+        %>
+            </div>
         </div>
+        
     </body>
 </html>

@@ -1,10 +1,9 @@
 <%-- 
-    Document   : index
-    Created on : Dec 25, 2021, 12:45:19 AM
+    Document   : salesOverview
+    Created on : Jan 24, 2022, 8:09:29 AM
     Author     : YOMATASHI
 --%>
 
-<%@page import="model.Account"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -35,26 +34,17 @@
               </button>
               <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <div class="navbar-nav">
-                    <a class="nav-link active" aria-current="page" href="index.jsp">Home</a>
-                    <a class="nav-link" href="supplierServlet">Supplier</a>
+                    <a class="nav-link" href="index.jsp">Home</a>
+                    <a class="nav-link" href="editStockServlet">Supplier</a>
                     <a class="nav-link" href="#">Promotion</a>
                     <a class="nav-link" href="#">About Us</a>
-                    <!-- Sales overview for supplier acc -->
-                    <%
-                        Account user = (Account)session.getAttribute("account");
-                        if(user == null){
-                            //
-                        }else{
-                            if(user.getRole().equals("supplier"))
-                                out.println("<a class='nav-link' href='salesOverviewServlet'>Sales Overview</a>");
-                        }
-                    %>
+                    <a class="nav-link active" aria-current="page" href="salesOverviewServlet">Sales Overview</a>
                     <a class="nav-link" href="LoginServlet">Account</a>
                 </div>
               </div>
             </div>
         </nav>
        
-        <!-- Home -->
+        <!-- Sales Overview -->
     </body>
 </html>
