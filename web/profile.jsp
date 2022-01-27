@@ -120,9 +120,15 @@
                                         out.println("<h4 class='text-right'>Profile</h4>");
                                     out.println("</div>");
                                     out.println("<div class='row mt-2'>");
+                                        if(user.getRole().equals("supplier")){
+                                            out.println("<div class='col-md-20'><label class='labels'>Full Name</label><input type='text' name='FullName' class='form-control' placeholder='Full Name' value='"
+                                                + user.getName()
+                                                + "' disabled></div>");
+                                        }else{
                                         out.println("<div class='col-md-20'><label class='labels'>Full Name</label><input type='text' name='FullName' class='form-control' placeholder='Full Name' value='"
                                                 + user.getName()
                                                 + "'></div>");
+                                        }
                                         out.println("<div class='col-md-20 mt-2'><label class='labels'>Phone Number</label><input type='text' name='phoneNum' class='form-control' placeholder='Enter Phone Number' value='"
                                                 + user.getPhoneNo()
                                                 + "'></div>");

@@ -4,6 +4,7 @@
     Author     : YOMATASHI
 --%>
 
+<%@page import="java.util.Vector"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -23,6 +24,7 @@
               background-color: #B6C197;
             }
         </style>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     </head>
     <body>
         <!--Navbar-->
@@ -44,7 +46,79 @@
               </div>
             </div>
         </nav>
-       
+        <%
+           Vector<String> fruitName = (Vector)request.getAttribute("fruitName");
+//           for(int i = 0; i< fruitName.size(); i++){
+//               out.println(fruitName.get(i) + "<br>");
+//           }
+        %>
         <!-- Sales Overview -->
+        <div class="container pt-3">
+            <div class="row px-4 pt-2 bg-light">
+                <p class="fs-4">Reports (Today)</p>
+                <div><canvas id="salechart"></canvas></div>
+            </div>
+            <div class="row bg-light px-4 pt-5">
+                <p class="fs-4">Recent Sales (Today)</p>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Customer</th>
+                            <th scope="col">Product</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Price (RM)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td scrop="row">customer name here</td>
+                            <td scrop="row">product name here</td>
+                            <td scrop="row">quantity here</td>
+                            <td scrop="row">price here</td>
+                        </tr>
+                        <tr>
+                            <td scrop="row">customer name here</td>
+                            <td scrop="row">product name here</td>
+                            <td scrop="row">quantity here</td>
+                            <td scrop="row">price here</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <script>
+            var xValues = [
+            <%
+                for(int i = 0; i< fruitName.size(); i++){
+                    out.println("'" + fruitName.get(i)+ "' ,");
+                }
+            %>
+            ];
+            var yValues = [5,2,8,0,9];
+
+            new Chart("salechart", {
+              type: "line",
+              data: {
+                labels: xValues,
+                datasets: [{
+                  label: "sales (RM)",
+                  fill: false,
+                  lineTension: 0,
+                  backgroundColor: "rgba(0,0,0,1.0)",
+                  borderColor: "#B6C197",
+                  data: yValues
+                }]
+              },
+              options: {
+                legend: {
+                    display: true,
+                },
+                scales: {
+                  yAxes: [{ticks: {min: 0, max:10}}],
+                }
+              }
+            });
+        </script>
     </body>
 </html>
