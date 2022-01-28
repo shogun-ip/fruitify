@@ -20,7 +20,7 @@ import javax.servlet.RequestDispatcher;
  *
  * @author priya
  */
-public class RegisterServlet extends HttpServlet {
+public class deleteStockServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

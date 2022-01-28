@@ -12,7 +12,7 @@ import java.io.Serializable;
  * @author YOMATASHI
  */
 public class Cart implements Serializable{
-    private int quantity,id;
+    int quantity,id;
     double price;
     String fruitname;
     

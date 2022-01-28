@@ -138,7 +138,7 @@
               </div>
             </div>
         </nav>
-        <%
+        <%--
            
            ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
             
@@ -175,7 +175,7 @@
                         
                 no++;
             }
-        %>
+        --%>
         <div class ="container">
             <div class="d-flex py-3">
                 <h3>Total Price: RM180.00</h3>
