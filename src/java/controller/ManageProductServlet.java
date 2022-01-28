@@ -7,24 +7,28 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Supplier;
-import java.sql.*;
-import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import model.Account;
+import model.Fruits;
 
 /**
  *
  * @author YOMATASHI
  */
-public class supplierServlet extends HttpServlet {
+public class ManageProductServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,47 +42,53 @@ public class supplierServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        HttpSession session = request.getSession(true);
-        Account user = (Account)session.getAttribute("account");
-        Vector<Supplier> supplier = new Vector<Supplier>();
-        
-        String driver = "com.mysql.jdbc.Driver";
-        String dbName = "fruitify";
-        String url = "jdbc:mysql://localhost/" + dbName + "?";
-        String userName = "root";
-        String pword = "";
-        String query = "SELECT * FROM suppliers";
-        
-        Class.forName(driver);
-        Connection con = DriverManager.getConnection(url, userName, pword);
-        Statement st = con.createStatement(); 
-        ResultSet rs = st.executeQuery(query); 
-        
-        Supplier temp = new Supplier();
-        while(rs.next()){
-            temp.setId(rs.getInt(1));
-            temp.setName(rs.getString(2));
-            temp.setRegion(rs.getString(3));
-            temp.setLink(rs.getString(4));
-            supplier.addElement(temp);
-            temp = new Supplier();
-        }
-        if(user == null){
-            request.setAttribute("supplier", supplier);
-            RequestDispatcher rd = request.getRequestDispatcher("/selectSupplier.jsp");
-            rd.forward(request, response);
-        }else{
-            if(user.getRole().equals("supplier")){
-                RequestDispatcher rd = request.getRequestDispatcher("ManageProductServlet");
-                rd.forward(request, response);
-            }else{
-                request.setAttribute("supplier", supplier);
-                RequestDispatcher rd = request.getRequestDispatcher("/selectSupplier.jsp");
-                rd.forward(request, response);
+        try (PrintWriter out = response.getWriter()) {
+            
+            HttpSession session = request.getSession(true);
+            Account user = (Account)session.getAttribute("account");
+            Vector<Fruits> fruits = new Vector<Fruits>();
+            
+            String driver = "com.mysql.jdbc.Driver";
+            String dbName = "fruitify";
+            String url = "jdbc:mysql://localhost/" + dbName + "?";
+            String userName = "root";
+            String pword = "";
+            String query = "SELECT id FROM suppliers WHERE name=?";
+
+            Class.forName(driver);
+            Connection con = DriverManager.getConnection(url, userName, pword);
+            PreparedStatement st = con.prepareStatement(query); 
+            st.setString(1, user.getName());
+            ResultSet rs = st.executeQuery(); 
+            
+            int sup_id = 0;
+            while(rs.next()){
+                sup_id = rs.getInt("id");
             }
+            
+            String query2 = "SELECT * FROM fruits WHERE supplier_id=?";
+            st = con.prepareStatement(query2);
+            st.setInt(1, sup_id);
+            rs = st.executeQuery();
+            
+            Fruits temp = new Fruits();
+            while(rs.next()){
+                temp.setId(rs.getInt(1));
+                temp.setSupplier_id(rs.getInt(2));
+                temp.setName(rs.getString(3));
+                temp.setStock(rs.getInt(4));
+                temp.setPrice(rs.getFloat(5));
+                temp.setPict(rs.getString(6));
+                fruits.addElement(temp);
+                temp = new Fruits();
+            }
+            st.close();
+            con.close();
+            
+            request.setAttribute("fruits", fruits);
+            RequestDispatcher rd = request.getRequestDispatcher("/manageProduct.jsp");
+            rd.forward(request, response);
         }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -96,9 +106,9 @@ public class supplierServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(supplierServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ManageProductServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(supplierServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ManageProductServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -116,9 +126,9 @@ public class supplierServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(supplierServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ManageProductServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(supplierServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ManageProductServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

@@ -1,3 +1,6 @@
+<%@page import="java.text.DecimalFormat"%>
+<%@page import="model.Fruits"%>
+<%@page import="java.util.Vector"%>
 <%@page import="model.Account"%>
 <!DOCTYPE html>
 <!--
@@ -96,96 +99,51 @@ and open the template in the editor.
             </div>
         </nav>
         
-        <%
-            //Account user = (Account)session.getAttribute("account");
-            
-        %>
-        
         <div class="container">
             <div class="row">
                 <table class="content-table">
                     <thead>
-                      <tr>
+                        <tr class="text-center">
                         <th>No</th>
                         <th>Photo</th>
                         <th>Fruit Name</th>
-                        <th> Fruit Type</th>
                         <th>Price</th>
-                        <th>Weightage</th>
                         <th>Availability</th>
+                        <th colspan="2">Action</th>
                       </tr>
                     </thead>
-                    <tbody>
-                      <tr>
-                        <th>1</th>
-                        <th> <img src="img/banana.png" alt="banana" width="100" height="80"></th> 
-                        <th>Banana</th>
-                        <th> Local</th>
-                        <th>RM4.90</th>
-                        <th>+/- 1kg</th>
-                        <th>30</th>
-                        <th><input type="submit" value="Delete"></th>
-                        <th><input type="submit" value="Edit"></th>
-                     </tr>
-                      <tr>
-                        <th>2</th>
-                        <th><img src="img/pineapple.png" alt="pineapple" width="100" height="80"></th>
-                        <th>Pineapple</th>
-                        <th> Local</th>
-                        <th>RM5.00</th>
-                        <th>+/- 1.2kg</th>
-                        <th>20</th>
-                        <th><input type="submit" value="Delete"></th>
-                        <th><input type="submit" value="Edit"></th>
-                      </tr>
-                      <tr>
-                        <th>3</th>
-                        <th><img src="img/watermelon.png" alt="watermelon" width="100" height="80"></th>
-                        <th>Watermelon</th>
-                        <th> Local</th>
-                        <th>RM2.29</th>
-                        <th>+/- 1kg</th>
-                        <th>40</th>
-                        <th><input type="submit" value="Delete"></th>
-                        <th><input type="submit" value="Edit"></th>
-                      </tr>
-                      <tr>
-                        <th>4</th>
-                        <th><img src="img/mangosteen.png" alt="mangosteen" width="100" height="80"></th>
-                        <th>Mangosteen</th>
-                        <th> Local</th>
-                        <th>RM11.90</th>
-                        <th>+/- 1kg</th>
-                        <th>100</th>
-                        <th><input type="submit" value="Delete"></th>
-                        <th><input type="submit" value="Edit"></th>
-                      </tr>
-                      <tr>
-                        <th>5</th>
-                        <th><img src="img/red apple.jpg" alt="apple" width="100" height="80"></th>
-                        <th>Red Apple</th>
-                        <th> Imported</th>
-                        <th>RM1.05</th>
-                        <th>each</th>
-                        <th>120</th>
-                        <th><input type="submit" value="Delete"></th>
-                        <th><input type="submit" value="Edit"></th>
-                      </tr>
-                      <tr>
-                        <th>6</th>
-                        <th><img src="img/greenapple.png" alt="greenapple" width="100" height="80"></th>
-                        <th>Green Apple</th>
-                        <th> Imported</th>
-                        <th>RM1.10</th>
-                        <th>each</th>
-                        <th>135</th>
-                        <th><input type="submit" value="Delete"></th>
-                        <th><input type="submit" value="Edit"></th>
-                      </tr>
+                    <tbody class="text-center">
+        <%
+            //Account user = (Account)session.getAttribute("account");
+            Vector<Fruits> fruits = (Vector)request.getAttribute("fruits");
+            
+            int no = 1;
+            DecimalFormat format = new DecimalFormat("#0.00");
+            for(int i = 0; i < fruits.size(); i++){
+                out.print("<tr>"
+                            + "<form method='POST' action='editStockServlet'>"
+                            + "<th>" + no + "</th>"
+                            + "<input type='text' name='fruit_id' value='"+ fruits.get(i).getId() +"'  hidden>"
+                            + "<td><img src='img/"+ fruits.get(i).getPict() + "' alt='"+ fruits.get(i).getName() + "' width='100' height='80'></td>"
+                            + "<th><input name='fruitname' type='text' value='" + fruits.get(i).getName() + "'></th>"
+                            + "<th>RM<input name='fruitprice' type='text' value='");
+                out.print(format.format(fruits.get(i).getPrice())); 
+                out.println("'></th>"
+                            + "<th><input name='fruitstock' type='number' min='0' step='10' value='"+ fruits.get(i).getStock() + "'></th>"
+                            + "</form>"
+                            + "<td><input type='submit' value='Edit'></td>"
+                            + "<form method='POST' action='deleteStockSerlvet'>"
+                            + "<input type='text' name='fruit_id' value='"+ fruits.get(i).getId() +"'  hidden>"
+                            + "<td><input type='submit' value='Delete'></td>"
+                            + "</form>");
+                no++;
+            }
+        %>
                     </tbody>
-                  </table>
+                </table>
             </div>
         </div>
+       
    	     	       
     </body>
 </html>

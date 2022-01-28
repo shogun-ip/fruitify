@@ -32,6 +32,10 @@
         <servlet-name>salesOverviewServlet</servlet-name>
         <servlet-class>controller.salesOverviewServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ManageProductServlet</servlet-name>
+        <servlet-class>controller.ManageProductServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>salesOverviewServlet</servlet-name>
         <url-pattern>/salesOverviewServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManageProductServlet</servlet-name>
+        <url-pattern>/ManageProductServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
