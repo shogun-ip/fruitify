@@ -41,6 +41,14 @@ public class Cart implements Serializable{
     public void setFruitname(String fruitname) {
         this.fruitname = fruitname;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     
     
 }

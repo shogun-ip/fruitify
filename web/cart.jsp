@@ -138,32 +138,44 @@
               </div>
             </div>
         </nav>
-        <%--
+        <%
            
            ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
             
             int no = 1;
             DecimalFormat format = new DecimalFormat("#RM0.00");
             for(int i = 0; i < cart_list.size(); i++){
-                out.print("<tr>"
-                            + "<form method='POST' action=''>"
-                            + "<th>" + no + "</th>"
-                            + "<input type='text' name='fruit_id' value='"+ fruits.get(i).getId() +"'  hidden>"
-                            + "<td><img src='img/"+ fruits.get(i).getPict() + "' alt='"+ fruits.get(i).getName() + "' width='100' height='80'></td>"
-                            + "<th><input name='fruitname' type='text' value='" + fruits.get(i).getName() + "'></th>"
-                            + "<th>RM <input name='fruitprice' type='text' value='");
-                out.print(format.format(fruits.get(i).getPrice())); 
-                out.println("'></th>"
-                            + "<th><input name='fruitstock' type='number' min='0' step='10' value='"+ fruits.get(i).getStock() + "'></th>"
-                            + "</form>"
-                            + "<td><input type='submit' value='Edit'></td>"
-                            + "<form method='POST' action='deleteStockSerlvet'>"
-                            + "<input type='text' name='fruit_id' value='"+ fruits.get(i).getId() +"'  hidden>"
-                            + "<td><input type='submit' value='Delete'></td>"
-                            + "</form>");
+                out.print(  "<table class='table table-loght'>"
+                            +"<thead>"
+                            +"<tr>"
+                            + "<form method='POST' action='' class='form-inline'>"
+                            + "<th scope='col'>Fruit</th>"
+                            + "<th scope='col'>Quantity</th>"
+                            + "<th scope='col'>Price</th>"
+                            + "<th scope='col'>Cancel</th>"
+                            +"</tr>"
+                            +"</thead>"
+                            +"<tbody>"
+                            +"<tr>"
+                            +"<td>"
+                            +"<input type='hidden'class='form-input'  name='id' value='" + cart_list.get(i).getId() +"'  hidden>"
+                            +"</td>"
+                            +"<td>"
+                            +"<div class='form-group d-flex justify-content-between'>"
+                            +"<a class='btn btn-sm btn-decre' href=''><i class='fas fa-minus-square'></i></a>"
+                            +"<input type='text' name='quantity' class='form-control' value='" + cart_list.get(i).getQuantity() +"' hidden>"
+                            +"<a class='btn btn-sm btn-incre' href=''><i class='fas fa-plus-square'></i></a>"
+                            +"</div>"
+                            +"</td>"
+                            +"<td>"
+                            +"<input type='hidden'class='form-input'  name='price' value='");
+                            out.print(format.format(cart_list.get(i).getPrice()));
+                         
+                            
+                        
                 no++;
             }
-        --%>
+        %>
         <div class ="container">
             <div class="d-flex py-3">
                 <h3>Total Price: RM180.00</h3>
@@ -180,7 +192,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td></td>
+                        <td><input type="text" name=""></td>
                          <td>
                 <form action="" method="post" class="form-inline">
                     <input type="hidden" name="id" value="1" class="form-input">
