@@ -7,7 +7,15 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,15 +39,39 @@ public class AddToCartServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             ArrayList<Cart> cartList = new ArrayList<>();
             
+            String driver = "com.mysql.jdbc.Driver";
+            String dbName = "fruitify";
+            String url = "jdbc:mysql://localhost/" + dbName + "?";
+            String userName = "root";
+            String pword = "";
+            String query = "SELECT * FROM fruits WHERE id=?";
+            
+            int qty =Integer.parseInt(request.getParameter("quantity"));
             int id = Integer.parseInt(request.getParameter("id"));
-            Cart cm = new Cart();
-            cm.setId(id);
-            cm.setQuantity(1);
+            
+            Class.forName(driver);
+            Connection con = DriverManager.getConnection(url, userName, pword);
+            PreparedStatement st = con.prepareStatement(query); 
+            st.setInt(1,id);
+            ResultSet rs = st.executeQuery(); 
+            
+            String name = "";
+            double price = 0.0;
+            while(rs.next()){
+                name = rs.getString("name");
+                price = rs.getDouble("price");
+            }
+            
+          Cart cm = new Cart();
+            cm.setId(id);   
+           cm.setQuantity(qty);
+           cm.setFruitname(name);
+           cm.setPrice(price);
             
             HttpSession session = request.getSession();
             ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
@@ -62,8 +94,11 @@ public class AddToCartServlet extends HttpServlet {
                   if(!exist) {
                          cartList.add(cm);
                          out.println("product added");
-                     }
-            }
+                    }
+           }
+           RequestDispatcher rd = request.getRequestDispatcher("/cart.jsp");
+             rd.forward(request, response);
+             
         }
     }
 
@@ -79,7 +114,13 @@ public class AddToCartServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AddToCartServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(AddToCartServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -93,7 +134,13 @@ public class AddToCartServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AddToCartServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(AddToCartServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

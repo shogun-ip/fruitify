@@ -173,11 +173,9 @@ and open the template in the editor.
                                         "<img src='img/"+ fruits.get(i).getPict() +"'>" +
                                     "</div>"
                                     + "<form action='AddToCartServlet' method='POST'>" +
-                                    "<div class='description'>"
-                                        + "<input type='text' name='name' value='"+ fruits.get(i).getName() +"' hidden>" +
+                                    "<div class='description'>"+
                                        "<h1>"+ fruits.get(i).getName() +"</h1><br>"+
-                                       "<p><b>"
-                                        + "<input type='text' name='price' value='"+ fruits.get(i).getPrice() +"' hidden>"); 
+                                       "<p><b>");         
                     out.print(format.format(fruits.get(i).getPrice())); 
                     out.println(      "</b> <span>each</span></p><br>" +
                                        "<p>Availability: "+ fruits.get(i).getStock() +"</p><br>" +
