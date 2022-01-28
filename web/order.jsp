@@ -184,7 +184,7 @@ and open the template in the editor.
                                        "</form>" +
                                     "</div>" +
                                     "<div class='button-group'>" +
-                                       "<a href='checkout.jsp' class='cart'>Add to Cart</a>" +
+                                       "<a href='AddToCartServlet' class='cart'>Add to Cart</a>" +
                                     "</div>" +
                                  "</div>");
                 }
