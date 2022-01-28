@@ -180,7 +180,7 @@ and open the template in the editor.
                     out.println(      "</b> <span>each</span></p><br>" +
                                        "<p>Availability: "+ fruits.get(i).getStock() +"</p><br>" +
                                            "<label for='quantity'>Quantity:</label>" +
-                                           "<input type='number' id='quantity' name='quantity' min='0' max='"+ fruits.get(i).getStock() +"' step='10' placeholder='0' value='0'>" +
+                                           "<input type='number' id='quantity' name='quantity' min='0' max='"+ fruits.get(i).getStock() +"' step='10' value='10'>" +
                                     "</div>"
                                     + "<input type='text' name='id' value='"+ fruits.get(i).getId()+"' hidden>" +
                                     "<div class='button-group'>" +

@@ -71,6 +71,7 @@ public class AddToCartServlet extends HttpServlet {
             cm.setQuantity(qty);
             cm.setFruitname(name);
             cm.setPrice(price);
+            cm.setTotal(price*qty);
             
             ArrayList<Cart> cart_list = (ArrayList<Cart>)session.getAttribute("cart-list");
             

@@ -138,51 +138,10 @@
               </div>
             </div>
         </nav>
-        <%--
-           
-           ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
-            
-            int no = 1;
-            DecimalFormat format = new DecimalFormat("#RM0.00");
-            for(int i = 0; i < cart_list.size(); i++){
-                out.print(  "<table class='table table-loght'>"
-                            +"<thead>"
-                            +"<tr>"
-                            + "<form method='POST' action='' class='form-inline'>"
-                            + "<th scope='col'>Fruit</th>"
-                            + "<th scope='col'>Quantity</th>"
-                            + "<th scope='col'>Price</th>"
-                            + "<th scope='col'>Cancel</th>"
-                            +"</tr>"
-                            +"</thead>"
-                            +"<tbody>"
-                            +"<tr>"
-                            +"<td>"
-                            +"<input type='hidden'class='form-input'  name='id' value='" + cart_list.get(i).getId() +"'  hidden>"
-                            +"</td>"
-                            +"<td>"
-                            +"<div class='form-group d-flex justify-content-between'>"
-                            +"<a class='btn btn-sm btn-decre' href=''><i class='fas fa-minus-square'></i></a>"
-                            +"<input type='text' name='quantity' class='form-control' value='" + cart_list.get(i).getQuantity() +"' hidden>"
-                            +"<a class='btn btn-sm btn-incre' href=''><i class='fas fa-plus-square'></i></a>"
-                            +"</div>"
-                            +"</td>"
-                            +"<td>"
-                            +"<input type='hidden'class='form-input'  name='price' value='");
-                            out.print(format.format(cart_list.get(i).getPrice()));
-                         
-                            
-                        
-                no++;
-            }
-        --%>
-        <div class ="container">
-            <div class="d-flex py-3">
-                <h3>Total Price: RM180.00</h3>
-                <a class="mx-3 btn btn-primary" href="#">Check Out</a>
-            </div>
-            <table class="table table-loght">
-                <thead>
+        
+        <div class="container pt-5">
+            <table class="table table-light">
+                <thead class="text-center">
                     <tr>
                         <th scope="col">Fruit</th>
                         <th scope="col">Quantity</th>
@@ -191,49 +150,34 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><input type="text" name=""></td>
-                         <td>
-                <form action="" method="post" class="form-inline">
-                    <input type="hidden" name="id" value="1" class="form-input">
-                    <div class="form-group d-flex justify-content-between">
-                         <a class="btn btn-sm btn-decre" href=""><i class="fas fa-minus-square"></i></a>
-                        <input type="text" name="quantity" class="form-control" value="1" readonly>
-                        <a class="btn btn-sm btn-incre" href=""><i class="fas fa-plus-square"></i></a>
-                    </div>  
-                </form>
-                        </td>
-                        <td>RM60.00</td>
-                        <td><a class="btn btn-sm btn-danger" href="">Remove</a></td>
-                    </tr>
+        <%
+           ArrayList<Cart> cart_list = (ArrayList<Cart>)session.getAttribute("cart-list");
+           double total = 0; 
+           
+            DecimalFormat format = new DecimalFormat("RM#0.00");
+            for(int i = 0; i < cart_list.size(); i++){
+                out.print("<tr>"
+                            + "<td>"+ cart_list.get(i).getFruitname() +"</td>"
+                            + "<td><div class='form-group d-flex justify-content-between'>"
+                                + "<a class='btn btn-sm btn-decre' href=''><i class='fas fa-minus-square'></i></a>"
+                                + "<input type='text' name='quantity' class='form-control' value='"+ cart_list.get(i).getQuantity() +"' readonly>"
+                                + "<a class='btn btn-sm btn-incre' href=''><i class='fas fa-plus-square'></i></a>"
+                            + "</div></td>"
+                            + "<td class='text-center'>");
+                out.print(format.format(cart_list.get(i).getTotal()));
+                out.println("</td>"
+                            + "<td class='text-center'><a class='btn btn-sm btn-danger' href=''>Remove</a></td>"
+                            + "</tr>");
+                total += cart_list.get(i).getTotal();
+            }
+        %>
                 </tbody>
             </table>
+            <div class="d-flex py-3">
+                <h3>Total Price: <% out.print(format.format(total)); %></h3>
+                <a class="mx-3 btn btn-primary" href="checkout.jsp">Check Out</a>
+            </div>
         </div>
-        
-<!--        <div class="cart">
-            <div class="title">
-                My Cart
-            </div>
-            
-            Product#1
-            <div class="fruit">
-                
-            </div>
-            
-            <div class="image">
-                <img src="img/banana.png">
-            </div>
-            
-            <div class="description">
-                <span>Banana</span>
-            </div>
-            
-            <div class="quantity">
-                
-            </div>
-            
-            <div class="total-price">RM60.00</div>
-        </div>-->
         
     </body>
 </html>

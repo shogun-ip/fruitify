@@ -13,8 +13,16 @@ import java.io.Serializable;
  */
 public class Cart implements Serializable{
     int quantity,id;
-    double price;
+    double price, total;
     String fruitname;
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
     
     public Cart() {}
 
