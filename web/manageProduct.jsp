@@ -126,7 +126,7 @@ and open the template in the editor.
                             + "<input type='text' name='fruit_id' value='"+ fruits.get(i).getId() +"'  hidden>"
                             + "<td><img src='img/"+ fruits.get(i).getPict() + "' alt='"+ fruits.get(i).getName() + "' width='100' height='80'></td>"
                             + "<th><input name='fruitname' type='text' value='" + fruits.get(i).getName() + "'></th>"
-                            + "<th>RM<input name='fruitprice' type='text' value='");
+                            + "<th>RM <input name='fruitprice' type='text' value='");
                 out.print(format.format(fruits.get(i).getPrice())); 
                 out.println("'></th>"
                             + "<th><input name='fruitstock' type='number' min='0' step='10' value='"+ fruits.get(i).getStock() + "'></th>"
