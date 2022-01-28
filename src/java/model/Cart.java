@@ -5,11 +5,13 @@
  */
 package model;
 
+import java.io.Serializable;
+
 /**
  *
- * @author user
+ * @author YOMATASHI
  */
-public class Cart extends Fruits{
+public class Cart extends Fruits implements Serializable{
     private int quantity;
     
     public Cart() {}
