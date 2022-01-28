@@ -144,7 +144,9 @@
                                         out.println("<div class='col-md-20 mt-2'><label class='labels'>City</label><input type='text' name='City' class='form-control' placeholder='Enter City' value='"
                                                 + user.getCity()
                                                 + "'></div>");
-                                        out.println("<div class='col-md-20 mt-2'><label class='labels'>Region</label><select class='form-select mb-2' aria-label='Region' name='Region'><option selected disabled>"
+                                        out.println("<div class='col-md-20 mt-2'><label class='labels'>Region</label><select class='form-select mb-2' aria-label='Region' name='Region'>"
+                                                + user.getRegion()
+                                                + "<option selected disabled>"
                                                 + user.getRegion()
                                                 + "</option><option value='Northern'>Northern Region (Perlis, Kedah, Penang, Perak)</option><option value='East Coast'>East Coast Region (Kelantan, Terengganu, Pahang)</option><option value='Central'>Central Region (Selangor, Kuala Lumpur, Putrajaya)</option><option value='Southern'>Southern Region (Negeri Sembilan, Melaka, Johor)</option></select></div>");
                                     out.println("</div>");
