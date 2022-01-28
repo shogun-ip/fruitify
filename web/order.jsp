@@ -171,21 +171,24 @@ and open the template in the editor.
                     out.print("<div class='card'>" +
                                     "<div class='image-section'>" +
                                         "<img src='img/"+ fruits.get(i).getPict() +"'>" +
-                                    "</div>" +
-                                    "<div class='description'>" +
+                                    "</div>"
+                                    + "<form action='AddToCartServlet' method='POST'>" +
+                                    "<div class='description'>"
+                                        + "<input type='text' name='name' value='"+ fruits.get(i).getName() +"' hidden>" +
                                        "<h1>"+ fruits.get(i).getName() +"</h1><br>"+
-                                       "<p><b>"); 
+                                       "<p><b>"
+                                        + "<input type='text' name='price' value='"+ fruits.get(i).getPrice() +"' hidden>"); 
                     out.print(format.format(fruits.get(i).getPrice())); 
                     out.println(      "</b> <span>each</span></p><br>" +
                                        "<p>Availability: "+ fruits.get(i).getStock() +"</p><br>" +
-                                       "<form>" +
                                            "<label for='quantity'>Quantity:</label>" +
                                            "<input type='number' id='quantity' name='quantity' min='0' max='"+ fruits.get(i).getStock() +"' step='10' placeholder='0'>" +
-                                       "</form>" +
-                                    "</div>" +
+                                    "</div>"
+                                    + "<input type='text' name='id' value='"+ fruits.get(i).getId()+"' hidden>" +
                                     "<div class='button-group'>" +
-                                       "<a href='AddToCartServlet' class='cart'>Add to Cart</a>" +
-                                    "</div>" +
+                                       "<input type='submit' value='Add to cart'>" +
+                                    "</div>"
+                                    + "</form>" +
                                  "</div>");
                 }
             }

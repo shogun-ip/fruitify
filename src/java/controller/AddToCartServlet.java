@@ -17,7 +17,7 @@ import model.Cart;
 
 /**
  *
- * @author user
+ * @author YOMATASHI
  */
 public class AddToCartServlet extends HttpServlet {
 
@@ -34,7 +34,6 @@ public class AddToCartServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
             ArrayList<Cart> cartList = new ArrayList<>();
             
             int id = Integer.parseInt(request.getParameter("id"));
@@ -65,19 +64,6 @@ public class AddToCartServlet extends HttpServlet {
                          out.println("product added");
                      }
             }
-            
-            for(Cart )
-            
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AddToCartServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AddToCartServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
         }
     }
 
