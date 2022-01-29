@@ -72,14 +72,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <% for(int i = 0; i < sales.size(); i++){ %>
+                        <% 
+                            for(int i = 0; i < sales.size(); i++){
+                                if((Integer)request.getAttribute("sup_id") == sales.get(i).getSup_id()){
+                        %>
                         <tr>
                             <td scrop="row"><% out.print(sales.get(i).getCustomer_name()); %></td>
                             <td scrop="row"><% out.print(sales.get(i).getProduct_name()); %></td>
                             <td scrop="row"><% out.print(sales.get(i).getQty()); %></td>
                             <td scrop="row"><% out.print(format.format(sales.get(i).getEachprice())); %></td>
                         </tr>
-                        <% } %>
+                        <% 
+                                }
+                            } 
+                        %>
                     </tbody>
                 </table>
             </div>

@@ -41,6 +41,7 @@ public class orderServlet extends HttpServlet {
         HttpSession session = request.getSession(true);
         Vector<Fruits> fruits = new Vector<Fruits>();
         int supplier_id = Integer.parseInt(request.getParameter("sup_id"));
+        session.setAttribute("sup_idSes", supplier_id);
         
         String driver = "com.mysql.jdbc.Driver";
         String dbName = "fruitify";
