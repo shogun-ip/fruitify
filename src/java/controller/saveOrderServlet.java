@@ -46,16 +46,18 @@ public class saveOrderServlet extends HttpServlet {
         String url = "jdbc:mysql://localhost/" + dbName + "?";
         String userName = "root";
         String pword = "";
-        String query = "INSERT INTO orders(product_id, quantity, customer_name) VALUES(?,?,?)";
+        String query = "INSERT INTO orders(product_id, supplier_id, quantity, customer_name) VALUES(?,?,?,?)";
 
         Class.forName(driver);
         Connection con = DriverManager.getConnection(url, userName, pword);
         PreparedStatement st = con.prepareStatement(query);
         
+        int sup_id = (Integer)session.getAttribute("sup_idSes");
         for(int i = 0; i < order.size(); i++){
             st.setInt(1, order.get(i).getProduct_id());
-            st.setInt(2, order.get(i).getQuantity());
-            st.setString(3, order.get(i).getCustomer_name());
+            st.setInt(2, sup_id);
+            st.setInt(3, order.get(i).getQuantity());
+            st.setString(4, order.get(i).getCustomer_name());
             st.executeUpdate();
         }
         
@@ -81,6 +83,7 @@ public class saveOrderServlet extends HttpServlet {
         
         session.removeAttribute("order");
         session.removeAttribute("cart-list");
+        session.removeAttribute("sup_idSes");
         st.close();
         con.close();
         

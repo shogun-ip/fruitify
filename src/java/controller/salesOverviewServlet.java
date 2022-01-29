@@ -65,7 +65,7 @@ public class salesOverviewServlet extends HttpServlet {
                 sup_id = rs.getInt("id");
             }
             
-            String query2 = "SELECT name FROM fruits WHERE supplier_id=?";
+            String query2 = "SELECT name, id FROM fruits WHERE supplier_id=?";
             st = con.prepareStatement(query2);
             st.setInt(1, sup_id);
             rs = st.executeQuery();
@@ -75,6 +75,7 @@ public class salesOverviewServlet extends HttpServlet {
             int qty_sales = 0;
             while(rs.next()){
                 temp_report.setFruit_name(rs.getString("name"));
+                temp_report.setFruit_id(rs.getInt("id"));
                 temp_report.setQty_sold(qty_sales);
                 reports.add(temp_report);
                 temp_report = new Reports();
@@ -92,10 +93,11 @@ public class salesOverviewServlet extends HttpServlet {
             while(rs.next()){
                 while(rs2.next()){
                     if(rs.getInt("product_id") == rs2.getInt("id")){
+                        temp_sales.setSup_id(rs.getInt("supplier_id")); 
                         temp_sales.setProduct_name(rs2.getString("name"));
                         temp_sales.setEachprice((rs.getInt("quantity"))*(rs2.getDouble("price")));
                         for(int i = 0; i < reports.size(); i++){
-                            if(reports.get(i).getFruit_name().equals(rs2.getString("name"))){
+                            if(reports.get(i).getFruit_id() == (rs2.getInt("id"))){
                                 qty_sales = reports.get(i).getQty_sold() + rs.getInt("quantity");
                                 reports.get(i).setQty_sold(qty_sales);
                                 if(max < qty_sales){
@@ -115,6 +117,7 @@ public class salesOverviewServlet extends HttpServlet {
             st.close();
             con.close();
             
+            request.setAttribute("sup_id", sup_id);
             request.setAttribute("max", max);
             request.setAttribute("sales", sales);
             request.setAttribute("reports", reports);

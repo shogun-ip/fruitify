@@ -13,7 +13,15 @@ import java.io.Serializable;
  */
 public class Reports implements Serializable{
     String fruit_name;
-    int qty_sold;
+    int qty_sold, fruit_id;
+
+    public int getFruit_id() {
+        return fruit_id;
+    }
+
+    public void setFruit_id(int fruit_id) {
+        this.fruit_id = fruit_id;
+    }
 
     public Reports() {
     }

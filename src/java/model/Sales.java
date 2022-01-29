@@ -13,10 +13,18 @@ import java.io.Serializable;
  */
 public class Sales implements Serializable{
     String customer_name, product_name;
-    int qty;
+    int qty, sup_id;
     double eachprice;
 
     public Sales() {
+    }
+
+    public int getSup_id() {
+        return sup_id;
+    }
+
+    public void setSup_id(int sup_id) {
+        this.sup_id = sup_id;
     }
 
     public String getCustomer_name() {
