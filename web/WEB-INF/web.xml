@@ -56,6 +56,10 @@
         <servlet-name>QuantityIncDecServlet</servlet-name>
         <servlet-class>controller.QuantityIncDecServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RemoveFromCartServlet</servlet-name>
+        <servlet-class>controller.RemoveFromCartServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -111,6 +115,10 @@
     <servlet-mapping>
         <servlet-name>QuantityIncDecServlet</servlet-name>
         <url-pattern>/QuantityIncDecServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RemoveFromCartServlet</servlet-name>
+        <url-pattern>/RemoveFromCartServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
