@@ -75,9 +75,11 @@ public class AddToCartServlet extends HttpServlet {
             
             ArrayList<Cart> cart_list = (ArrayList<Cart>)session.getAttribute("cart-list");
             
+            String message = "";
             if(cart_list == null) {
                 cartList.add(cm);
                 session.setAttribute("cart-list",cartList);
+                message = "Product added";
 //                out.println("session created and added the list");
             }else {
                  cartList = cart_list;
@@ -86,14 +88,18 @@ public class AddToCartServlet extends HttpServlet {
                  for(Cart c:cart_list) {
                      if(c.getId() == id) {
                          exist = true;
+                        message = "Product already exist.";
 //                         out.println("product exist");
                      }  
                  }
                   if(!exist) {
                          cartList.add(cm);
+                         message = "Product added";
 //                         out.println("product added");
                     }
             }
+            
+            request.setAttribute("message", message);
             RequestDispatcher rd = request.getRequestDispatcher("/cart.jsp");
             rd.forward(request, response);
     }

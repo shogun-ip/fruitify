@@ -102,7 +102,7 @@
               data: {
                 labels: xValues,
                 datasets: [{
-                  label: "sales (RM)",
+                  label: "Quantity (Sold)",
                   fill: false,
                   lineTension: 0,
                   backgroundColor: "rgba(0,0,0,1.0)",

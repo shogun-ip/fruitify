@@ -40,6 +40,10 @@
         <servlet-name>RegisterServlet</servlet-name>
         <servlet-class>controller.RegisterServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>saveOrderServlet</servlet-name>
+        <servlet-class>controller.saveOrderServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -79,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/RegisterServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>saveOrderServlet</servlet-name>
+        <url-pattern>/saveOrderServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

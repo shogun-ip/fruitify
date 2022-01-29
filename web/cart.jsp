@@ -4,6 +4,8 @@
     Author     : user
 --%>
 
+<%@page import="model.Order"%>
+<%@page import="model.Account"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="model.Cart"%>
 <%@page import="java.util.ArrayList"%>
@@ -140,6 +142,9 @@
         </nav>
         
         <div class="container pt-5">
+            <div class="d-flex">
+                <p><% out.println(request.getAttribute("message")); %></p>
+            </div>
             <table class="table table-light">
                 <thead class="text-center">
                     <tr>
@@ -151,7 +156,10 @@
                 </thead>
                 <tbody>
         <%
+           Account user = (Account)session.getAttribute("account");
            ArrayList<Cart> cart_list = (ArrayList<Cart>)session.getAttribute("cart-list");
+           ArrayList<Order> order = new ArrayList<Order>();
+           Order temp_order = new Order();
            double total = 0; 
            
             DecimalFormat format = new DecimalFormat("RM#0.00");
@@ -169,13 +177,21 @@
                             + "<td class='text-center'><a class='btn btn-sm btn-danger' href=''>Remove</a></td>"
                             + "</tr>");
                 total += cart_list.get(i).getTotal();
+                temp_order.setProduct_id(cart_list.get(i).getId());
+                temp_order.setQuantity(cart_list.get(i).getQuantity());
+                temp_order.setCustomer_name(user.getName());
+                order.add(temp_order);
+                temp_order = new Order();
             }
         %>
                 </tbody>
             </table>
             <div class="d-flex py-3">
                 <h3>Total Price: <% out.print(format.format(total)); %></h3>
-                <a class="mx-3 btn btn-primary" href="checkout.jsp">Check Out</a>
+                <form action="saveOrderServlet" method="POST">
+                    <% session.setAttribute("order", order); %>
+                    <input type="submit" value="Check Out" class="mx-3 btn btn-primary">
+                </form>
             </div>
         </div>
         
