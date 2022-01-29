@@ -140,14 +140,13 @@
                 
                 <thead>
                     <tr>
-                        <th scope="col">Order Id</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Amount</th> 
+                        <th scope="col">Item</th>
+                        <th scope="col">Total Price</th> 
                         <th scope="col">Date</th>
                     </tr>
                 </thead>
                 <tbody>
-                 
+                    
                 </tbody>
             </table>
             

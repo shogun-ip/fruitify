@@ -174,7 +174,7 @@
                             + "<td class='text-center'>");
                 out.print(format.format(cart_list.get(i).getTotal()));
                 out.println("</td>"
-                            + "<td class='text-center'><a class='btn btn-sm btn-danger' href=''>Remove</a></td>"
+                            + "<td class='text-center'><a class='btn btn-sm btn-danger' href='RemoveFromCartServlet?id="+cart_list.get(i).getId()+"'>Remove</a></td>"
                             + "</tr>");
                 total += cart_list.get(i).getTotal();
                 temp_order.setProduct_id(cart_list.get(i).getId());

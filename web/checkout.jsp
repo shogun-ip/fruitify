@@ -123,7 +123,7 @@ hr {
         <div class="row">
           <div class="col-75">
             <div class="containerr">
-              <form action="#" method="post">
+              <form action="index.jsp" method="post">
 
                 <div class="row">
                   <div class="col-50">
@@ -172,15 +172,19 @@ hr {
                       </div>
                     </div>
                   </div>
-
+                  
                 </div>
-                  <button class="w-100 btn btn-lg btn-primary" type="submit">Place Order</button>
+                  <button onclick="myFunction()" class="w-100 btn btn-lg btn-primary" type="submit">Place Order</button>
               </form>
             </div>
           </div>
         </div>
     </div>
-
+<script>
+function myFunction() {
+  alert("Order has been placed.");
+}
+</script>
 </body>
 </html>
 

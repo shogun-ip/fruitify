@@ -8,6 +8,7 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -35,6 +36,7 @@ public class RemoveFromCartServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             
             String id = request.getParameter("id");
+            String message = "";
             
             if(id != null) {
                 ArrayList<Cart> cart_list = (ArrayList<Cart>) request.getSession().getAttribute("cart-list");
@@ -42,15 +44,19 @@ public class RemoveFromCartServlet extends HttpServlet {
                     for(Cart c: cart_list) {
                         if(c.getId() == Integer.parseInt(id)) {
                             cart_list.remove(cart_list.indexOf(c));
+                            message = "Item remove from cart.";
+                            request.setAttribute("message", message);
                             break;
                         }
                     }
                 }
-                response.sendRedirect("cart.jsp");
-                
+                RequestDispatcher rd = request.getRequestDispatcher("/cart.jsp");
+                rd.forward(request, response);
+               
             }
             else{
-                response.sendRedirect("cart.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("/cart.jsp");
+                rd.forward(request, response);
             }
         }
     }

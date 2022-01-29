@@ -59,19 +59,25 @@ public class QuantityIncDecServlet extends HttpServlet {
                         }
                     }
                 }
-            }
-            else if (action.equals("dec")){
+                 else if (action.equals("dec")){
                 for (Cart c: cart_list){
-                    if(c.getId() == id && c.getQuantity() > 1){
+                    if(c.getId() == id){
                         int quantity = c.getQuantity();
-			quantity--;
+			quantity -= 10;
 			c.setQuantity(quantity);
+                        c.setTotal(c.getPrice()*quantity);
+                        message = "10 items remove.";
+                        request.setAttribute("message", message);
+                        RequestDispatcher rd = request.getRequestDispatcher("/cart.jsp");
+                        rd.forward(request, response);
 			break;
                     }
                 }
                 RequestDispatcher rd = request.getRequestDispatcher("/cart.jsp");
                 rd.forward(request, response);
             }
+            }
+           
             else{
                 RequestDispatcher rd = request.getRequestDispatcher("/cart.jsp");
                 rd.forward(request, response);
