@@ -3,10 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/user/OneDrive/Documents/GitHub/fruitify/src/java/controller/RemoveFromCartServlet.java</file>
-            <file>file:/C:/Users/user/OneDrive/Documents/GitHub/fruitify/web/cart.jsp</file>
-            <file>file:/C:/Users/user/OneDrive/Documents/GitHub/fruitify/src/java/controller/AddToCartServlet.java</file>
-            <file>file:/C:/Users/user/OneDrive/Documents/GitHub/fruitify/src/java/controller/QuantityIncDecServlet.java</file>
+            <file>file:/D:/GitHub%20files/fruitify/src/java/model/Fruits.java</file>
+            <file>file:/D:/GitHub%20files/fruitify/web/profile.jsp</file>
+            <file>file:/D:/GitHub%20files/fruitify/src/java/controller/paymentHistory.java</file>
+            <file>file:/D:/GitHub%20files/fruitify/web/checkout.jsp</file>
+            <file>file:/D:/GitHub%20files/fruitify/web/paymentHistory.jsp</file>
+            <file>file:/D:/GitHub%20files/fruitify/src/java/controller/orderServlet.java</file>
+            <file>file:/D:/GitHub%20files/fruitify/web/order.jsp</file>
         </group>
     </open-files>
 </project-private>

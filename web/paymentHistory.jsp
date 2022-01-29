@@ -4,6 +4,9 @@
     Author     : user
 --%>
 
+<%@page import="java.text.DecimalFormat"%>
+<%@page import="model.OrderHistory"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -127,30 +130,43 @@
                 <div class="navbar-nav">
                     <a class="nav-link" href="index.jsp">Home</a>
                     <a class="nav-link" href="supplierServlet">Supplier</a>
-                    <a class="nav-link" href="#">Promotion</a>
-                    <a class="nav-link" href="#">About Us</a>
+                    <a class="nav-link active" aria-current="page" href="paymentHistory">My order</a>
                     <a class="nav-link" href="LoginServlet">Account</a>
                 </div>
               </div>
             </div>
         </nav>
         
-        <div class ="container">
-            <table class="table table-loght">
-                
-                <thead>
-                    <tr>
-                        <th scope="col">Item</th>
-                        <th scope="col">Total Price</th> 
-                        <th scope="col">Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    
-                </tbody>
-            </table>
-            
-        </div>
+        <div class="container pt-3">
+            <div class="row px-4 pt-2 bg-light">
+                <p class="fs-4">Order History</p>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Order ID</th>
+                            <th scope="col">Product Name</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Price (RM)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% 
+                            ArrayList<OrderHistory> orderHist = (ArrayList<OrderHistory>)request.getAttribute("orderHist");
+                            DecimalFormat format = new DecimalFormat("#0.00");
+                            for(int i = 0; i < orderHist.size(); i++){
+                        %>
+                        <tr>
+                            <td scrop="row"><% out.print(orderHist.get(i).getOrder_id()); %></td>
+                            <td scrop="row"><% out.print(orderHist.get(i).getProd_name()); %></td>
+                            <td scrop="row"><% out.print(orderHist.get(i).getQty()); %></td>
+                            <td scrop="row"><% out.print(format.format(orderHist.get(i).getPrice())); %></td>
+                        </tr>
+                        <% 
+                            } 
+                        %>
+                    </tbody>
+                </table>
+            </div>
        
     </body>
 </html>

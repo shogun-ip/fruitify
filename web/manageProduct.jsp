@@ -81,8 +81,6 @@ and open the template in the editor.
                 <div class="navbar-nav">
                     <a class="nav-link" href="index.jsp">Home</a>
                     <a class="nav-link active" aria-current="page" href="supplierServlet">Supplier</a>
-                    <a class="nav-link" href="#">Promotion</a>
-                    <a class="nav-link" href="#">About Us</a>
                     <!-- Sales overview for supplier acc -->
                     <%
                         Account user = (Account)session.getAttribute("account");

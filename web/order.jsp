@@ -1,3 +1,4 @@
+<%@page import="model.Account"%>
 <%@page import="model.Fruits"%>
 <%@page import="java.util.Vector"%>
 <%@page import="java.text.DecimalFormat" %>
@@ -115,18 +116,17 @@ and open the template in the editor.
               <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <div class="navbar-nav">
                     <a class="nav-link" href="index.jsp">Home</a>
-                    <%--
-                        Account user = (Account)session.getAttribute("account");
-                        if(user.getRole().equals("supplier")){
-                            out.println("<a class='nav-link' href='editStockServlet'>Supplier</a>");
-                            out.println("<a class='nav-link' href='salesOverviewServlet'>Sales Overview</a>");
-                        }else{
-                            out.println("<a class='nav-link' href='supplierServlet'>Supplier</a>");
-                        }
-                    --%>
                     <a class="nav-link active" aria-current="page" href="supplierServlet">Supplier</a>
-                    <a class="nav-link" href="#">Promotion</a>
-                    <a class="nav-link" href="#">About Us</a>
+                    <!-- My orders for vendor -->
+                    <%
+                        Account user = (Account)session.getAttribute("account");
+                        if(user == null){
+                            //
+                        }else{
+                            if(user.getRole().equals("vendor"))
+                                out.println("<a class='nav-link' href='paymentHistory'>My order</a>");
+                        }
+                    %>
                     <a class="nav-link" href="LoginServlet">Account</a>
                 </div>
               </div>

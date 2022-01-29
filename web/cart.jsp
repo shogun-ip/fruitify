@@ -133,8 +133,16 @@
                 <div class="navbar-nav">
                     <a class="nav-link" href="index.jsp">Home</a>
                     <a class="nav-link" href="supplierServlet">Supplier</a>
-                    <a class="nav-link" href="#">Promotion</a>
-                    <a class="nav-link" href="#">About Us</a>
+                    <!-- My orders for vendor -->
+                    <%
+                        Account user = (Account)session.getAttribute("account");
+                        if(user == null){
+                            //
+                        }else{
+                            if(user.getRole().equals("vendor"))
+                                out.println("<a class='nav-link' href='paymentHistory'>My order</a>");
+                        }
+                    %>
                     <a class="nav-link" href="LoginServlet">Account</a>
                 </div>
               </div>
@@ -156,7 +164,7 @@
                 </thead>
                 <tbody>
         <%
-           Account user = (Account)session.getAttribute("account");
+           //Account user = (Account)session.getAttribute("account");
            ArrayList<Cart> cart_list = (ArrayList<Cart>)session.getAttribute("cart-list");
            ArrayList<Order> order = new ArrayList<Order>();
            Order temp_order = new Order();

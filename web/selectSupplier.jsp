@@ -60,8 +60,16 @@
                         }
                     --%>
                     <a class="nav-link active" aria-current="page" href="supplierServlet">Supplier</a>
-                    <a class="nav-link" href="#">Promotion</a>
-                    <a class="nav-link" href="#">About Us</a>
+                    <!-- My orders for vendor -->
+                    <%
+                        Account user = (Account)session.getAttribute("account");
+                        if(user == null){
+                            //
+                        }else{
+                            if(user.getRole().equals("vendor"))
+                                out.println("<a class='nav-link' href='paymentHistory'>My order</a>");
+                        }
+                    %>
                     <a class="nav-link" href="LoginServlet">Account</a>
                 </div>
               </div>
@@ -75,7 +83,7 @@
                 <p class="fs-5">*Greyed out supplier is not available for your location</p>
             </div>
         <%
-            Account user = (Account)session.getAttribute("account");
+            //Account user = (Account)session.getAttribute("account");
             Vector<Supplier> supplier = (Vector)request.getAttribute("supplier");
             Vector<Supplier> activSup = new Vector<Supplier>();
             Vector<Supplier> passivSup = new Vector<Supplier>();
