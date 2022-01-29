@@ -121,7 +121,7 @@ and open the template in the editor.
             DecimalFormat format = new DecimalFormat("#0.00");
             for(int i = 0; i < fruits.size(); i++){
                 out.print("<tr>"
-                            + "<form method='POST' action='editStockServlet'>"
+                            + "<form method='POST' action='eeditStockServlet'>"
                             + "<th>" + no + "</th>"
                             + "<input type='text' name='fruit_id' value='"+ fruits.get(i).getId() +"'  hidden>"
                             + "<td><img src='img/"+ fruits.get(i).getPict() + "' alt='"+ fruits.get(i).getName() + "' width='100' height='80'></td>"
@@ -130,12 +130,13 @@ and open the template in the editor.
                 out.print(format.format(fruits.get(i).getPrice())); 
                 out.println("'></th>"
                             + "<th><input name='fruitstock' type='number' min='0' step='10' value='"+ fruits.get(i).getStock() + "'></th>"
-                            + "</form>"
                             + "<td><input type='submit' value='Edit'></td>"
-                            + "<form method='POST' action='deleteStockSerlvet'>"
+                            + "</form>"
+                            + "<form method='POST' action='deleteStockServlet'>"
                             + "<input type='text' name='fruit_id' value='"+ fruits.get(i).getId() +"'  hidden>"
                             + "<td><input type='submit' value='Delete'></td>"
-                            + "</form>");
+                            + "</form>"
+                            + "</tr>");
                 no++;
             }
         %>

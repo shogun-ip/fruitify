@@ -34,9 +34,7 @@ public class deleteStockServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        int fruit_id;
-        fruit_id = request.getParameter("id");
+        int fruit_id = Integer.parseInt(request.getParameter("fruit_id"));
                 
         String driver = "com.mysql.jdbc.Driver";
         String dbName = "fruitify";
@@ -49,17 +47,16 @@ public class deleteStockServlet extends HttpServlet {
         Connection con = DriverManager.getConnection(url, userName, pword);
         PreparedStatement st = con.prepareStatement(query);
 
-        st.setString(1, id);
-        
-        st.executeDelete();
+        st.setInt(1, fruit_id);
+        st.executeUpdate();
         
         st.close();
         con.close();
         
         try (PrintWriter out = response.getWriter()) {
-            RequestDispatcher rd = request.getRequestDispatcher("manageProduct.jsp");
-            rd.include(request, response);
-            out.println("<p class='text-center'>Account registered! Go to <a class='text-decoration-none' href='login.jsp'>login page</a>.</p>");
+            out.println("<p>Successfully deleted.</p>");
+            RequestDispatcher rd = request.getRequestDispatcher("supplierServlet");
+            rd.forward(request, response);
         }
     }
 
@@ -78,9 +75,9 @@ public class deleteStockServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(deleteStockServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(deleteStockServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -98,9 +95,9 @@ public class deleteStockServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(deleteStockServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(deleteStockServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

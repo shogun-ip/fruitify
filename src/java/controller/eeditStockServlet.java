@@ -7,22 +7,21 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.sql.*;
-import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.Account;
+import javax.servlet.RequestDispatcher;
+
 /**
  *
  * @author YOMATASHI
  */
-public class editStockServlet extends HttpServlet {
+public class eeditStockServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,45 +35,34 @@ public class editStockServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            
-            HttpSession session = request.getSession(true);
-            Account user = (Account)session.getAttribute("account");
-            Vector<String> fruitName = new Vector<String>();
-            
-            String driver = "com.mysql.jdbc.Driver";
-            String dbName = "fruitify";
-            String url = "jdbc:mysql://localhost/" + dbName + "?";
-            String userName = "root";
-            String pword = "";
-            String query = "UPDATE fruits WHERE id=?";
+        HttpSession session = request.getSession(true);
+        int fruit_id = Integer.parseInt(request.getParameter("fruit_id"));
+        String fruitname = request.getParameter("fruitname");
+        double price = Double.parseDouble(request.getParameter("fruitprice"));
+        int stock = Integer.parseInt(request.getParameter("fruitstock"));
 
-            Class.forName(driver);
-            Connection con = DriverManager.getConnection(url, userName, pword);
-            PreparedStatement st = con.prepareStatement(query); 
-            int supplier_id = Integer.parseInt(request.getParameter("sup_id"));
-            ResultSet rs = st.executeQuery(); 
-            
-            int sup_id = 0;
-            while(rs.next()){
-                sup_id = rs.getInt("id");
-            }
-            
-            Fruits temp = new Fruits();
-            while(rs.next()){
-            temp.setName(rs.getString(1));
-            temp.setPrice(rs.getFloat(2));
-            temp.setStock(rs.getInt(3));
-            fruits.addElement(temp);
-            temp = new Fruits();
-        }
-            }
-            st.close();
-            con.close();
-            
-            request.setAttribute("fruitName", fruitName);
-            RequestDispatcher rd = request.getRequestDispatcher("/manageProduct.jsp");
+        String driver = "com.mysql.jdbc.Driver";
+        String dbName = "fruitify";
+        String url = "jdbc:mysql://localhost/" + dbName + "?";
+        String userName = "root";
+        String pword = "";
+        String query = "UPDATE fruits SET name=?, stock=?, price=? WHERE id=?";
+
+        Class.forName(driver);
+        Connection con = DriverManager.getConnection(url, userName, pword);
+        PreparedStatement st = con.prepareStatement(query);
+        st.setString(1, fruitname);
+        st.setInt(2, stock);
+        st.setDouble(3, price);
+        st.setInt(4, fruit_id);
+        st.executeUpdate();
+        
+        st.close();
+        con.close();
+
+        try (PrintWriter out = response.getWriter()) {
+            out.println("<p>Successfully updated.</p>");
+            RequestDispatcher rd = request.getRequestDispatcher("supplierServlet");
             rd.forward(request, response);
         }
     }
@@ -91,7 +79,13 @@ public class editStockServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(eeditStockServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(eeditStockServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -105,7 +99,13 @@ public class editStockServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(eeditStockServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(eeditStockServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

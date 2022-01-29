@@ -44,6 +44,14 @@
         <servlet-name>saveOrderServlet</servlet-name>
         <servlet-class>controller.saveOrderServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>deleteStockServlet</servlet-name>
+        <servlet-class>controller.deleteStockServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>eeditStockServlet</servlet-name>
+        <servlet-class>controller.eeditStockServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -87,6 +95,14 @@
     <servlet-mapping>
         <servlet-name>saveOrderServlet</servlet-name>
         <url-pattern>/saveOrderServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deleteStockServlet</servlet-name>
+        <url-pattern>/deleteStockServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>eeditStockServlet</servlet-name>
+        <url-pattern>/eeditStockServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
