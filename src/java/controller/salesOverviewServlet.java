@@ -18,6 +18,8 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Account;
+import model.Reports;
+import model.Sales;
 
 /**
  *
@@ -37,12 +39,12 @@ public class salesOverviewServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
             
             HttpSession session = request.getSession(true);
             Account user = (Account)session.getAttribute("account");
-            Vector<String> fruitName = new Vector<String>();
+            Vector<Reports> reports = new Vector<Reports>();
+            Vector<Sales> sales = new Vector<Sales>();
+            int max = 1;
             
             String driver = "com.mysql.jdbc.Driver";
             String dbName = "fruitify";
@@ -57,27 +59,67 @@ public class salesOverviewServlet extends HttpServlet {
             st.setString(1, user.getName());
             ResultSet rs = st.executeQuery(); 
             
+            //SUPPLIER ID
             int sup_id = 0;
             while(rs.next()){
                 sup_id = rs.getInt("id");
             }
-           
             
             String query2 = "SELECT name FROM fruits WHERE supplier_id=?";
             st = con.prepareStatement(query2);
             st.setInt(1, sup_id);
             rs = st.executeQuery();
             
+            //REPORT FruitName & QtySold 
+            Reports temp_report = new Reports();
+            int qty_sales = 0;
             while(rs.next()){
-                fruitName.addElement(rs.getString("name"));
+                temp_report.setFruit_name(rs.getString("name"));
+                temp_report.setQty_sold(qty_sales);
+                reports.add(temp_report);
+                temp_report = new Reports();
             }
+
+            //SALES CustomerName, ProductName, eachprice
+            String qry = "SELECT * FROM orders ORDER BY id DESC";
+            st = con.prepareStatement(qry);
+            rs = st.executeQuery();
+            String qry2 = "SELECT * FROM fruits";
+            st = con.prepareStatement(qry2);
+            ResultSet rs2 = st.executeQuery();
+            Sales temp_sales = new Sales();
+            
+            while(rs.next()){
+                while(rs2.next()){
+                    if(rs.getInt("product_id") == rs2.getInt("id")){
+                        temp_sales.setProduct_name(rs2.getString("name"));
+                        temp_sales.setEachprice((rs.getInt("quantity"))*(rs2.getDouble("price")));
+                        for(int i = 0; i < reports.size(); i++){
+                            if(reports.get(i).getFruit_name().equals(rs2.getString("name"))){
+                                qty_sales = reports.get(i).getQty_sold() + rs.getInt("quantity");
+                                reports.get(i).setQty_sold(qty_sales);
+                                if(max < qty_sales){
+                                    max = qty_sales;
+                                }
+                            }
+                        }
+                    }
+                }
+                rs2 = st.executeQuery();
+                temp_sales.setQty(rs.getInt("quantity"));
+                temp_sales.setCustomer_name(rs.getString("customer_name"));
+                sales.add(temp_sales);
+                temp_sales = new Sales();
+            }
+            
             st.close();
             con.close();
             
-            request.setAttribute("fruitName", fruitName);
+            request.setAttribute("max", max);
+            request.setAttribute("sales", sales);
+            request.setAttribute("reports", reports);
             RequestDispatcher rd = request.getRequestDispatcher("/salesOverview.jsp");
             rd.forward(request, response);
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

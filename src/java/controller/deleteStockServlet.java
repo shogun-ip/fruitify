@@ -7,18 +7,20 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 
 /**
  *
- * @author YOMATASHI
+ * @author priya
  */
-public class editStockServlet extends HttpServlet {
+public class deleteStockServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,12 +32,32 @@ public class editStockServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
+        int fruit_id = Integer.parseInt(request.getParameter("fruit_id"));
+                
+        String driver = "com.mysql.jdbc.Driver";
+        String dbName = "fruitify";
+        String url = "jdbc:mysql://localhost/" + dbName + "?";
+        String userName = "root";
+        String pword = "";
+        String query = "DELETE FROM fruits WHERE id=?";
 
-        RequestDispatcher rd = request.getRequestDispatcher("/manageProduct.jsp");
-        rd.include(request, response);
+        Class.forName(driver);
+        Connection con = DriverManager.getConnection(url, userName, pword);
+        PreparedStatement st = con.prepareStatement(query);
+
+        st.setInt(1, fruit_id);
+        st.executeUpdate();
         
+        st.close();
+        con.close();
+        
+        try (PrintWriter out = response.getWriter()) {
+            out.println("<p>Successfully deleted.</p>");
+            RequestDispatcher rd = request.getRequestDispatcher("supplierServlet");
+            rd.forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -50,7 +72,13 @@ public class editStockServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(deleteStockServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(deleteStockServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -64,7 +92,13 @@ public class editStockServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(deleteStockServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(deleteStockServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

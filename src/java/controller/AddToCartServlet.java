@@ -7,7 +7,15 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +25,7 @@ import model.Cart;
 
 /**
  *
- * @author user
+ * @author YOMATASHI
  */
 public class AddToCartServlet extends HttpServlet {
 
@@ -31,24 +39,48 @@ public class AddToCartServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            
-            ArrayList<Cart> cartList = new ArrayList<>();
-            
+            HttpSession session = request.getSession(true);
+            ArrayList<Cart> cartList = new ArrayList<Cart>();
+            int qty = Integer.parseInt(request.getParameter("quantity"));
             int id = Integer.parseInt(request.getParameter("id"));
+            
+            String driver = "com.mysql.jdbc.Driver";
+            String dbName = "fruitify";
+            String url = "jdbc:mysql://localhost/" + dbName + "?";
+            String userName = "root";
+            String pword = "";
+            String query = "SELECT * FROM fruits WHERE id=?";
+            
+            Class.forName(driver);
+            Connection con = DriverManager.getConnection(url, userName, pword);
+            PreparedStatement st = con.prepareStatement(query); 
+            st.setInt(1,id);
+            ResultSet rs = st.executeQuery(); 
+            
+            String name = "";
+            double price = 0.0;
+            while(rs.next()){
+                name = rs.getString("name");
+                price = rs.getDouble("price");
+            }
+            
             Cart cm = new Cart();
-            cm.setId(id);
-            cm.setQuantity(1);
+            cm.setId(id);   
+            cm.setQuantity(qty);
+            cm.setFruitname(name);
+            cm.setPrice(price);
+            cm.setTotal(price*qty);
             
-            HttpSession session = request.getSession();
-            ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
+            ArrayList<Cart> cart_list = (ArrayList<Cart>)session.getAttribute("cart-list");
             
+            String message = "";
             if(cart_list == null) {
                 cartList.add(cm);
                 session.setAttribute("cart-list",cartList);
-                out.println("session created and added the list");
+                message = "Product added";
+//                out.println("session created and added the list");
             }else {
                  cartList = cart_list;
                  boolean exist = false;
@@ -56,29 +88,20 @@ public class AddToCartServlet extends HttpServlet {
                  for(Cart c:cart_list) {
                      if(c.getId() == id) {
                          exist = true;
-                         out.println("product exist");
+                        message = "Product already exist.";
+//                         out.println("product exist");
                      }  
                  }
-                 
                   if(!exist) {
                          cartList.add(cm);
-                         out.println("product added");
-                     }
+                         message = "Product added";
+//                         out.println("product added");
+                    }
             }
             
-            for(Cart )
-            
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AddToCartServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AddToCartServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+            request.setAttribute("message", message);
+            RequestDispatcher rd = request.getRequestDispatcher("/cart.jsp");
+            rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -93,7 +116,13 @@ public class AddToCartServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AddToCartServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(AddToCartServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -107,7 +136,13 @@ public class AddToCartServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AddToCartServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(AddToCartServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
