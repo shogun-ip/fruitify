@@ -169,7 +169,7 @@
                             + "<td><div class='form-group d-flex justify-content-between'>"
                                 + "<a class='btn btn-sm btn-decre' href=''><i class='fas fa-minus-square'></i></a>"
                                 + "<input type='text' name='quantity' class='form-control' value='"+ cart_list.get(i).getQuantity() +"' readonly>"
-                                + "<a class='btn btn-sm btn-incre' href=''><i class='fas fa-plus-square'></i></a>"
+                                + "<a class='btn btn-sm btn-incre' href='QuantityIncDecServlet?action=inc&id='"+cart_list.get(i).getId()+"'><i class='fas fa-plus-square'></i></a>"
                             + "</div></td>"
                             + "<td class='text-center'>");
                 out.print(format.format(cart_list.get(i).getTotal()));

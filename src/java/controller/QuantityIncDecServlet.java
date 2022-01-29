@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Cart;
 
 /**
@@ -38,8 +39,8 @@ public class QuantityIncDecServlet extends HttpServlet {
             
             String action = request.getParameter("action");
             int id = Integer.parseInt(request.getParameter("id"));
-            
-            ArrayList<Cart> cart_list = (ArrayList<Cart>) request.getSession().getAttribute("cart-list");
+            HttpSession session= request.getSession(true);
+            ArrayList<Cart> cart_list = (ArrayList<Cart>)session.getAttribute("cart-list");
             
             if(action != null && id>=1) {
                 if(action.equals("inc")){
@@ -47,11 +48,11 @@ public class QuantityIncDecServlet extends HttpServlet {
                         int quantity = c.getQuantity();
                         quantity++;
                         c.setQuantity(quantity);
-                        response.sendRedirect("cart.jsp");
+                        response.sendRedirect("/cart.jsp");
                     }
                 }
             }
-            if (action.equals("dec")){
+            else if (action.equals("dec")){
                 for (Cart c: cart_list){
                     if(c.getId() == id && c.getQuantity() > 1){
                         int quantity = c.getQuantity();
@@ -60,12 +61,12 @@ public class QuantityIncDecServlet extends HttpServlet {
 			break;
                     }
                 }
-                response.sendRedirect("cart.jsp");
+                response.sendRedirect("/cart.jsp");
             }
             else{
-                response.sendRedirect("cart.jsp");
+                response.sendRedirect("/cart.jsp");
             }
-        }
+        }  
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -108,3 +109,4 @@ public class QuantityIncDecServlet extends HttpServlet {
     }// </editor-fold>
 
 }
+
