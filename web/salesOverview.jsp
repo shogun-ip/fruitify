@@ -4,6 +4,9 @@
     Author     : YOMATASHI
 --%>
 
+<%@page import="java.text.DecimalFormat"%>
+<%@page import="model.Sales"%>
+<%@page import="model.Reports"%>
 <%@page import="java.util.Vector"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -47,19 +50,18 @@
             </div>
         </nav>
         <%
-           Vector<String> fruitName = (Vector)request.getAttribute("fruitName");
-//           for(int i = 0; i< fruitName.size(); i++){
-//               out.println(fruitName.get(i) + "<br>");
-//           }
+           Vector<Reports> reports = (Vector<Reports>)request.getAttribute("reports");
+           Vector<Sales> sales = (Vector<Sales>)request.getAttribute("sales");
+           DecimalFormat format = new DecimalFormat("#0.00");
         %>
         <!-- Sales Overview -->
         <div class="container pt-3">
             <div class="row px-4 pt-2 bg-light">
-                <p class="fs-4">Reports (Today)</p>
+                <p class="fs-4">Reports</p>
                 <div><canvas id="salechart"></canvas></div>
             </div>
             <div class="row bg-light px-4 pt-5">
-                <p class="fs-4">Recent Sales (Today)</p>
+                <p class="fs-4">Recent Sales</p>
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -70,18 +72,14 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <% for(int i = 0; i < sales.size(); i++){ %>
                         <tr>
-                            <td scrop="row">customer name here</td>
-                            <td scrop="row">product name here</td>
-                            <td scrop="row">quantity here</td>
-                            <td scrop="row">price here</td>
+                            <td scrop="row"><% out.print(sales.get(i).getCustomer_name()); %></td>
+                            <td scrop="row"><% out.print(sales.get(i).getProduct_name()); %></td>
+                            <td scrop="row"><% out.print(sales.get(i).getQty()); %></td>
+                            <td scrop="row"><% out.print(format.format(sales.get(i).getEachprice())); %></td>
                         </tr>
-                        <tr>
-                            <td scrop="row">customer name here</td>
-                            <td scrop="row">product name here</td>
-                            <td scrop="row">quantity here</td>
-                            <td scrop="row">price here</td>
-                        </tr>
+                        <% } %>
                     </tbody>
                 </table>
             </div>
@@ -90,12 +88,18 @@
         <script>
             var xValues = [
             <%
-                for(int i = 0; i< fruitName.size(); i++){
-                    out.println("'" + fruitName.get(i)+ "' ,");
+                for(int i = 0; i < reports.size(); i++){
+                    out.println("'" + reports.get(i).getFruit_name()+ "' ,");
                 }
             %>
             ];
-            var yValues = [5,2,8,0,9];
+            var yValues = [
+            <%
+                for(int i = 0; i < reports.size(); i++){
+                    out.println("'" + reports.get(i).getQty_sold()+ "' ,");
+                }
+            %>
+            ];
 
             new Chart("salechart", {
               type: "line",
@@ -115,7 +119,7 @@
                     display: true,
                 },
                 scales: {
-                  yAxes: [{ticks: {min: 0, max:10}}],
+                  yAxes: [{ticks: {min: 0, max:<% out.print(request.getAttribute("max")); %>}}],
                 }
               }
             });
