@@ -8,6 +8,7 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -41,14 +42,21 @@ public class QuantityIncDecServlet extends HttpServlet {
             int id = Integer.parseInt(request.getParameter("id"));
             HttpSession session= request.getSession(true);
             ArrayList<Cart> cart_list = (ArrayList<Cart>)session.getAttribute("cart-list");
+            String message = "";
             
             if(action != null && id>=1) {
                 if(action.equals("inc")){
                     for(Cart c:cart_list) {
-                        int quantity = c.getQuantity();
-                        quantity++;
-                        c.setQuantity(quantity);
-                        response.sendRedirect("/cart.jsp");
+                        if(c.getId() == id){
+                            int quantity = c.getQuantity();
+                            quantity += 10;
+                            c.setQuantity(quantity);
+                            c.setTotal(c.getPrice()*quantity);
+                            message = "10 items added.";
+                            request.setAttribute("message", message);
+                            RequestDispatcher rd = request.getRequestDispatcher("/cart.jsp");
+                            rd.forward(request, response);
+                        }
                     }
                 }
             }
@@ -61,10 +69,12 @@ public class QuantityIncDecServlet extends HttpServlet {
 			break;
                     }
                 }
-                response.sendRedirect("/cart.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("/cart.jsp");
+                rd.forward(request, response);
             }
             else{
-                response.sendRedirect("/cart.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("/cart.jsp");
+                rd.forward(request, response);
             }
         }  
     }
